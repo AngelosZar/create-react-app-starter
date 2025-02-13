@@ -9,13 +9,13 @@ export default function Header() {
           <Link to="/" className="hover:text-blue-800 transition-colors">
             Home
           </Link>
-          <Link to="" className="hover:text-blue-800">
+          <Link to="/product/1" className="hover:text-blue-800">
             Individual product page
           </Link>
-          <Link to="" className="hover:text-blue-800">
+          <Link to="/checkout-success" className="hover:text-blue-800">
             Checkout success page
           </Link>
-          <Link to="" className="hover:text-blue-800">
+          <Link to="/cart" className="hover:text-blue-800">
             Cart page
           </Link>
           <Link to="/contact" className="hover:text-blue-800 transition-colors">
