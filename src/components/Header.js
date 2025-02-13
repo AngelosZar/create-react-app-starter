@@ -1,7 +1,19 @@
 export default function Header() {
   return (
     <header>
-      <h1>My React App</h1>
+      <div>
+        <span>Logo placeholder</span>
+        <nav>
+          <ul>
+            <li>Home</li>
+            <li>Individual product page</li>
+            <li>Cart page</li>
+            <li>Checkout success page</li>
+            <li>Cart page</li>
+            <li>Contact page</li>
+          </ul>
+        </nav>
+      </div>
     </header>
   );
 }
