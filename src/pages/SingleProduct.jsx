@@ -1,12 +1,9 @@
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Layout from '../components/Layout';
 
 export default function SingleProductPage() {
   return (
     <div>
-      <Header />
-      <h1>Single product page</h1>
-      <Footer />
+      <Layout></Layout>
     </div>
   );
 }

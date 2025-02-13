@@ -3,12 +3,15 @@ import { Link } from 'react-router-dom';
 export default function Header() {
   return (
     <header className="flex bg-gray-100">
-      <nav className="flex items-center justify-between w-full max-w-4xl p-4">
-        <span>Logo placeholder</span>
+      <nav className="flex items-center justify-between w-full max-w-6xl p-4 ">
+        <Link to="/" className="hover:text-blue-800 transition-colors">
+          <img
+            src="https://images.pexels.com/photos/584177/pexels-photo-584177.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            alt="logo"
+            className="w-14 h-14"
+          />
+        </Link>
         <ul className="flex space-x-4">
-          <Link to="/" className="hover:text-blue-800 transition-colors">
-            Home
-          </Link>
           <Link to="/product/1" className="hover:text-blue-800">
             Individual product page
           </Link>
