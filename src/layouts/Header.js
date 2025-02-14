@@ -1,16 +1,13 @@
 import { Link } from 'react-router-dom';
 import { ReactComponent as CartIcon } from '../media/icons/cart.svg';
+import RainyDaysLogo from '../media/logos/RainyDays_Logo.png';
 
 export default function Header() {
   return (
-    <header className=" bg-gray-100 flex flex-col min-h-screen w-full max-w-1440px mx-auto px-4">
-      <nav className="flex items-center justify-between h-16 px-4">
+    <header className=" bg-gray-100 flex flex-col w-full max-w-1440px mx-auto px-4 ">
+      <nav className="flex items-center justify-between px-4">
         <Link to="/" className="hover:text-blue-800 transition-colors">
-          <img
-            src="https://images.pexels.com/photos/584177/pexels-photo-584177.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            alt="logo"
-            className="w-14 h-14"
-          />
+          <img src={RainyDaysLogo} alt="Logo" className="w-28 h-22 py-2" />
         </Link>
         <ul className="flex space-x-4 justify-center items-center">
           <Link to="/product/1" className="hover:text-blue-800">

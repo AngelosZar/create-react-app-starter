@@ -1,8 +1,8 @@
 export default function Footer() {
   return (
-    <footer>
+    <footer className=" bg-gray-100 flex flex-col w-full max-w-1440px mx-auto px-4">
       <div>
-        <span>Logo placeholder Footer</span>
+        <span></span>
         <ul>
           <li>placeholder</li>
           <li>placeholder</li>
