@@ -23,7 +23,9 @@ export default function Footer() {
             </Link>
           </span>
           <ul className="flex space-x-4 items-center w-full py-4 justify-center">
-            <li>&copy; 2025 ALL RIGHTS RESERVED</li>
+            <li className="font-semibold text-sm">
+              &copy; 2025 ALL RIGHTS RESERVED
+            </li>
             <li>Terms & conditions</li>
             <li>Privacy policy</li>
             <li>Cookie policy</li>
@@ -74,8 +76,8 @@ export default function Footer() {
         </div>
         <div className="flex flex-row items-end">
           <div>
-            <h6 className="text-center">Follow us on</h6>
-            <h6 className="text-center">Social Media</h6>
+            <h6 className="text-center font-semibold">Follow us on</h6>
+            <h6 className="text-center font-semibold">Social Media</h6>
             <ul className="flex space-x-4 justify-start items-center p-4">
               <li>
                 <a

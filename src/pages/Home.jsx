@@ -8,11 +8,11 @@ import Layout from '../layouts/Layout';
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center">
+    <body>
       <Layout>
         <HeroOnHome />
       </Layout>
-    </div>
+    </body>
   );
 }
 
@@ -20,6 +20,7 @@ function HeroOnHome() {
   return (
     <div>
       <h1>I am the hero section </h1>
+      <p>i am a text how do i look?</p>
     </div>
   );
 }

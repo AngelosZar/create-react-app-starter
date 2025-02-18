@@ -2,8 +2,8 @@ import Layout from '../layouts/Layout';
 
 export default function Contact() {
   return (
-    <div>
+    <body>
       <Layout></Layout>
-    </div>
+    </body>
   );
 }

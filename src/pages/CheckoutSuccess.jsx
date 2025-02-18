@@ -2,8 +2,8 @@ import Layout from '../layouts/Layout';
 
 export default function CheckoutSuccessPage() {
   return (
-    <div>
+    <body>
       <Layout></Layout>
-    </div>
+    </body>
   );
 }

@@ -1,8 +1,8 @@
 import Layout from '../layouts/Layout';
 export default function Cart() {
   return (
-    <div>
+    <body>
       <Layout></Layout>
-    </div>
+    </body>
   );
 }

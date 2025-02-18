@@ -5,7 +5,9 @@ import Contact from './pages/Contact';
 import Cart from './pages/Cart';
 import CheckoutSuccessPage from './pages/CheckoutSuccess';
 import SingleProductPage from './pages/SingleProduct';
-import './App.css';
+// import './App.css';
+// import '../src/styles/tailwind.css';
+import './styles/tailwind.css';
 
 function App() {
   return (
