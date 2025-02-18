@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { ReactComponent as CartIcon } from '../media/icons/cart.svg';
 import RainyDaysLogo from '../media/logos/RainyDays_Logo.png';
+import CartIcon from '../components/CartIcon';
 
 export default function Header() {
   return (
@@ -10,9 +10,9 @@ export default function Header() {
           <img src={RainyDaysLogo} alt="Logo" className="w-28 h-22 py-2" />
         </Link>
         <ul className="flex space-x-4 justify-center items-center">
-          <Link to="/product/1" className="hover:text-blue-800">
+          {/* <Link to="/product/1" className="hover:text-blue-800">
             Individual product page
-          </Link>
+          </Link> */}
           <Link to="/checkout-success" className="hover:text-blue-800">
             Checkout success page
           </Link>
@@ -20,7 +20,7 @@ export default function Header() {
             Contact page Contact
           </Link>
           <Link to="/cart" className="hover:text-blue-800">
-            <CartIcon className="w-12 h-12" />
+            <CartIcon />
           </Link>
         </ul>
       </nav>
