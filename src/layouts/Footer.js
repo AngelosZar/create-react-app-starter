@@ -20,7 +20,8 @@ export default function Footer() {
   }
 
   return (
-    <footer className=" bg-gray-100 flex flex-row w-full max-w-1440px mx-auto px-4  justify-between py-8">
+    // <footer className=" bg-gray-100 flex flex-row w-full max-w-1440px mx-auto px-4 justify-between py-8">
+    <footer className=" bg-gray-100  py-8">
       {/* right part of footer */}
       <div className="flex flex-row justify-between px-4">
         <div className="w-full">
@@ -34,7 +35,7 @@ export default function Footer() {
               />
             </Link>
           </span>
-          <ul className="flex space-x-4 items-center w-full py-4 justify-center">
+          <ul className="flex space-x-4 items-start w-full py-4 justify-start flex-wrap">
             <li className="font-semibold text-sm">
               &copy; 2025 ALL RIGHTS RESERVED
             </li>
@@ -43,7 +44,7 @@ export default function Footer() {
             <li>Cookie policy</li>
           </ul>
 
-          <div className="flex space-x-4 justify-start items-center">
+          <div className="flex space-x-4 justify-start items-center flex-wrap">
             <img
               src={paypalColorIcon}
               alt="Paypal Logo"
@@ -70,8 +71,9 @@ export default function Footer() {
         </div>
       </div>
       {/* right part of footer */}
-      <div className="flex flex-row px-4 justify-end ">
-        <div className="flex justify-center items-end gap-8 m-6 ">
+      <div className="flex px-4 justify-between flex-col md:flex-row">
+        <div className="flex gap-8 m-6 justify-start">
+          {/* <div className="flex justify-center items-end gap-8 m-6 "> */}
           <ul>
             <li className="font-semibold text-lg">Services</li>
             <li>Shipping</li>
