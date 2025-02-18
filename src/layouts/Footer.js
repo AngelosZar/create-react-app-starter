@@ -12,14 +12,26 @@ import pinterestIcon from '../media/Social-media/pinterest.png';
 import instagramLogo from '../media/Social-media/instagram.png';
 
 export default function Footer() {
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }
+
   return (
-    <footer className=" bg-gray-100 flex flex-row w-full max-w-1440px mx-auto px-4  justify-between">
+    <footer className=" bg-gray-100 flex flex-row w-full max-w-1440px mx-auto px-4  justify-between py-8">
       {/* right part of footer */}
       <div className="flex flex-row justify-between px-4">
         <div className="w-full">
           <span>
             <Link to="/" className="hover:text-blue-800 transition-colors">
-              <img src={RainyDaysLogo} alt="Logo" className="w-28 h-22 py-2" />
+              <img
+                src={RainyDaysLogo}
+                alt="Logo"
+                className="w-28 h-22 py-2"
+                onClick={scrollToTop}
+              />
             </Link>
           </span>
           <ul className="flex space-x-4 items-center w-full py-4 justify-center">
@@ -59,16 +71,16 @@ export default function Footer() {
       </div>
       {/* right part of footer */}
       <div className="flex flex-row px-4 justify-end ">
-        <div className="flex justify-center items-end gap-8 m-6">
+        <div className="flex justify-center items-end gap-8 m-6 ">
           <ul>
-            <li>Services</li>
+            <li className="font-semibold text-lg">Services</li>
             <li>Shipping</li>
             <li>Returns</li>
             <li>Warranty</li>
           </ul>
 
           <ul>
-            <li>Company</li>
+            <li className="font-semibold text-lg">Company</li>
             <li>About</li>
             <li>Reach us</li>
             <li>Career</li>
@@ -76,8 +88,8 @@ export default function Footer() {
         </div>
         <div className="flex flex-row items-end">
           <div>
-            <h6 className="text-center font-semibold">Follow us on</h6>
-            <h6 className="text-center font-semibold">Social Media</h6>
+            <h2 className="text-center font-semibold">Follow us on</h2>
+            <h2 className="text-center font-semibold">Social Media</h2>
             <ul className="flex space-x-4 justify-start items-center p-4">
               <li>
                 <a
