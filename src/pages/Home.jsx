@@ -8,11 +8,9 @@ import Layout from '../layouts/Layout';
 
 export default function Home() {
   return (
-    <body>
-      <Layout>
-        <HeroOnHome />
-      </Layout>
-    </body>
+    <Layout>
+      <HeroOnHome />
+    </Layout>
   );
 }
 
