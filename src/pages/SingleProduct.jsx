@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { getSingleProductUrl } from '../constants/apiEndPoints';
 //
 export default function SingleProductPage() {
-  const [product, setProduct] = useState('');
+  const [product, setProduct] = useState(null);
   const { id } = useParams();
 
   useEffect(() => {
@@ -18,8 +18,11 @@ export default function SingleProductPage() {
         }
         const data = await response.json();
         setProduct(data.data);
-        console.log(data);
-      } catch (error) {}
+        console.log(data.data);
+        console.log(data.data.tags);
+      } catch (error) {
+        console.error('Fetch error:', error);
+      }
     }
     fetchData();
   }, [id]);
@@ -36,18 +39,55 @@ function SingleProduct({ product }) {
   if (!product) {
     return <p>Loading...</p>;
   }
+
   return (
     <section>
       <div>
-        <img src={product.image.url} alt="placeholder" className="w-96 h-96" />
-        <h1>Single Product Page</h1>
+        <h2>product</h2>
+        <img
+          src={product.image.url}
+          alt={product.image.alt || 'product'}
+          className="w-96 h-96"
+        />
         <p>{product.title}</p>
-        <p>
-          {product.discountedPrice ? product.discountedPrice : product.price}
-        </p>
+        <div>
+          {Number(product.discountedPrice) < Number(product.price) ? (
+            <span>
+              <p className="line-through">{product.price}</p>
+              <p className="">{product.discountedPrice}</p>
+            </span>
+          ) : (
+            <p className="">{product.price}</p>
+          )}
+        </div>
+
         <p>{product.description}</p>
-        {/*  */}
-        <p>Rating :{product.rating}</p>
+
+        <p>{product.rating}</p>
+        <h2>reviews</h2>
+        <div>
+          {product.reviews.length > 0
+            ? product.reviews.map(review => (
+                <div key={review.id}>
+                  <h5> users review 👇</h5>
+                  <p>{review.username}</p>
+                  <p>{review.rating}</p>
+                  <p>{review.description}</p>
+                </div>
+              ))
+            : null}
+        </div>
+        <h2>tags</h2>
+        <div>
+          {product.tags.length > 0
+            ? product.tags.map(tag => (
+                // make ul and li?
+                <div>
+                  <p key={tag}>{tag}</p>
+                </div>
+              ))
+            : null}
+        </div>
         <button>Buy Now</button>
       </div>
     </section>
