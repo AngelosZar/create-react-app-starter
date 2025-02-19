@@ -1,6 +1,7 @@
 import { ProductCard } from './ProductCard';
 
 export function ProductsFeed({ products }) {
+  // console.log(products);
   return (
     // map the products here // return <ProductCard />
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

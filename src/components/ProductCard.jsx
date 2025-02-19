@@ -1,8 +1,21 @@
+import React, { useState } from 'react';
+
 export function ProductCard({ product }) {
+  const [selectedProduct, setSelectedProduct] = useState('');
+
+  function handleClick() {
+    console.log(product.id);
+    setSelectedProduct(product.id);
+  }
+
   return (
     // grid layout ca 12 cards after use pagination
-    <div>
-      <div className="max-w-sm flex flex-row">
+    <div className="bg-white p-4 rounded-lg shadow-md">
+      <div
+        className="max-w-sm flex flex-row"
+        onClick={handleClick}
+        // key={product.id}
+      >
         <img
           src={product.image.url}
           alt={product.image?.alt}
