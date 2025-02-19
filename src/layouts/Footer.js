@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 //
-import RainyDaysLogo from '../media/logos/RainyDays_Logo.png';
+import logo from '../media/logos/online-shop-high-resolution-logo-2.png';
 import paypalColorIcon from '../media/Payment/paypal-color-icon1.png';
 import visaIcon from '../media/Payment/visa-icon1.png';
 import masterCardIcon from '../media/Payment/master-card-icon1.png';
@@ -28,7 +28,7 @@ export default function Footer() {
           <span>
             <Link to="/" className="hover:text-blue-800 transition-colors">
               <img
-                src={RainyDaysLogo}
+                src={logo}
                 alt="Logo"
                 className="w-28 h-22 py-2"
                 onClick={scrollToTop}
