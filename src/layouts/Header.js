@@ -12,10 +12,10 @@ export default function Header() {
         </Link>
         {/* mobile */}
         <div className="flex items-center space-x-4 md:hidden">
-          <HamburgerMenu />
           <Link to="/cart" className="hover:text-blue-800">
             <CartIcon />
           </Link>
+          <HamburgerMenu />
         </div>
 
         {/* tablet-desktop */}
