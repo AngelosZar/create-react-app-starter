@@ -10,6 +10,7 @@ export default function Home() {
   return (
     <Layout>
       <HeroOnHome />
+      <SearchBar />
       <ProductsFeed />
       <QuoteSection />
       <TestimonialSection />
@@ -80,6 +81,15 @@ function TestimonialSection() {
         <img src="" alt="some person" />
         <p>Testimonial</p>
       </div>
+    </div>
+  );
+}
+
+function SearchBar() {
+  // use at product feed to filter products
+  return (
+    <div>
+      <input type="text" placeholder="search" />
     </div>
   );
 }
