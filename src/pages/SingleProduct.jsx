@@ -1,6 +1,26 @@
 import Layout from '../layouts/Layout';
-
+import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { getSingleProductUrl } from '../constants/apiEndPoints';
 export default function SingleProductPage() {
+  const [product, setProduct] = useState('');
+  const { id } = useParams();
+
+  useEffect(() => {
+    const url = getSingleProductUrl(id);
+    console.log(url);
+    async function fetchData() {
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`error ${response.status}`);
+        }
+        const data = await response.json();
+        setProduct(data);
+      } catch (error) {}
+    }
+    fetchData();
+  }, [id]);
   return (
     <Layout>
       <SingleProduct />

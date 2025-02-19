@@ -4,8 +4,10 @@ export function ProductCard({ product }) {
   const [selectedProduct, setSelectedProduct] = useState('');
 
   function handleClick() {
-    console.log(product.id);
     setSelectedProduct(product.id);
+    window.location.href = `/product/${
+      selectedProduct ? selectedProduct : product.id
+    }`;
   }
 
   return (
