@@ -33,10 +33,15 @@ export function CartProvider({ children }) {
   //
   const removeFromCart = product => {
     let newCart;
-    if (cart.find(item => item.id == product.id)) {
+    if (cart.find(item => item.id === product.id)) {
       newCart = cart.map(item =>
         item.id === product.id ? { ...item, quantity: item.quantity - 1 } : item
       );
+      newCart = newCart.filter(item => item.quantity > 0);
+      // setCart(newCart);
+      setCartItems(cartItems - 1);
+      setCartTotal(cartTotal - product.price);
     }
+    setCart(newCart);
   };
 }
