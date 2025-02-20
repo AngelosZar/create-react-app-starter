@@ -80,11 +80,10 @@ function SingleProduct({ product }) {
         <h2>tags</h2>
         <div>
           {product.tags.length > 0
-            ? product.tags.map(tag => (
-                // make ul and li?
-                <div>
-                  <p key={tag}>{tag}</p>
-                </div>
+            ? product.tags.map((tag, index) => (
+                <ul key={index}>
+                  <li>{tag}</li>
+                </ul>
               ))
             : null}
         </div>
