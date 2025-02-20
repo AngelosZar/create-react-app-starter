@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-
+import { useContext } from 'react';
+import { CartContext } from '../contexts/CartContext';
+//
 export function ProductCard({ product }) {
   const [selectedProduct, setSelectedProduct] = useState('');
+  const { cart, addToCart } = useContext(CartContext);
 
   function handleClick() {
     setSelectedProduct(product.id);
@@ -33,6 +36,7 @@ export function ProductCard({ product }) {
         {product.reviews.length > 0 && <ReviewCard product={product} />}
         {/* <ReviewCard product={product} /> */}
       </div>
+      <button onClick={() => addToCart(product)}>Add to Cart</button>
     </div>
   );
 }
