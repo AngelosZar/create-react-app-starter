@@ -39,9 +39,28 @@ export function CartProvider({ children }) {
       );
       newCart = newCart.filter(item => item.quantity > 0);
       // setCart(newCart);
+      //   check if values are updated in the cart // async issue
       setCartItems(cartItems - 1);
       setCartTotal(cartTotal - product.price);
     }
     setCart(newCart);
   };
+  //
+  return (
+    <CartContext.Provider
+      value={{
+        cart,
+        setCart,
+        cartItems,
+        setCartItems,
+        cartTotal,
+        setCartTotal,
+        addToCart,
+        removeFromCart,
+        clearCart,
+      }}
+    >
+      {children}
+    </CartContext.Provider>
+  );
 }
