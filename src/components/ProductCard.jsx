@@ -4,7 +4,8 @@ import { CartContext } from '../contexts/CartContext';
 //
 export function ProductCard({ product }) {
   const [selectedProduct, setSelectedProduct] = useState('');
-  const { cart, addToCart } = useContext(CartContext);
+  const { cart, addToCart, removeFromCart, clearCart } =
+    useContext(CartContext);
 
   function handleClick() {
     setSelectedProduct(product.id);
@@ -36,7 +37,18 @@ export function ProductCard({ product }) {
         {product.reviews.length > 0 && <ReviewCard product={product} />}
         {/* <ReviewCard product={product} /> */}
       </div>
-      <button onClick={() => addToCart(product)}>Add to Cart</button>
+      <button className="bg-blue-500" onClick={() => addToCart(product)}>
+        Add to Cart
+      </button>
+      <button className="bg-red-500" onClick={() => removeFromCart(product)}>
+        remove to Cart
+      </button>
+      <button
+        className="bg-black text-white"
+        onClick={() => clearCart(product)}
+      >
+        clear
+      </button>
     </div>
   );
 }
