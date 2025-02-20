@@ -30,4 +30,13 @@ export function CartProvider({ children }) {
     console.log(cartItems);
     console.log(cartTotal);
   };
+  //
+  const removeFromCart = product => {
+    let newCart;
+    if (cart.find(item => item.id == product.id)) {
+      newCart = cart.map(item =>
+        item.id === product.id ? { ...item, quantity: item.quantity - 1 } : item
+      );
+    }
+  };
 }
