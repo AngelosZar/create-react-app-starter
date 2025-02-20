@@ -1,17 +1,32 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 export const CartContext = createContext();
 
 export function CartProvider({ children }) {
-  const [cart, setCart] = useState([]);
-  const [cartItems, setCartItems] = useState(0);
-  const [cartTotal, setCartTotal] = useState(0);
-
+  const [cart, setCart] = useState(() => {
+    const savedLocallyCart = localStorage.getItem('cart');
+    return savedLocallyCart ? JSON.parse(savedLocallyCart) : [];
+  });
+  const [cartItems, setCartItems] = useState(() => {
+    const savedLocallyCartItems = localStorage.getItem('cartItems');
+    return savedLocallyCartItems ? JSON.parse(savedLocallyCartItems) : 0;
+  });
+  const [cartTotal, setCartTotal] = useState(() => {
+    const savedLocallyCartTotal = localStorage.getItem('cartTotal');
+    return savedLocallyCartTotal ? JSON.parse(savedLocallyCartTotal) : 0;
+  });
+  //
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    localStorage.setItem('cartTotal', JSON.stringify(cartTotal));
+  }, [cart, cartItems, cartTotal]);
+  //
   function clearCart() {
     setCart([]);
     setCartItems(0);
     setCartTotal(0);
   }
-
+  //
   const addToCart = product => {
     let newCart;
     if (cart.find(item => item.id === product.id)) {

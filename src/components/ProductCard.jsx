@@ -37,6 +37,7 @@ export function ProductCard({ product }) {
         {product.reviews.length > 0 && <ReviewCard product={product} />}
         {/* <ReviewCard product={product} /> */}
       </div>
+      {/*test buttons */}
       <button className="bg-blue-500" onClick={() => addToCart(product)}>
         Add to Cart
       </button>
@@ -49,6 +50,7 @@ export function ProductCard({ product }) {
       >
         clear
       </button>
+      {/*  */}
     </div>
   );
 }
