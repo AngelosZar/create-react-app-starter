@@ -4,6 +4,7 @@ import CartIcon from '../components/CartIcon';
 import { HamburgerMenu, DesktopMenu } from '../components/HamburgerMenu';
 
 export default function Header() {
+  // const { cartItems } = useContext(CartContext);
   return (
     <header className=" bg-gray-100 flex flex-col w-full max-w-1440px mx-auto px-4 ">
       <nav className="flex items-center justify-between px-4">
