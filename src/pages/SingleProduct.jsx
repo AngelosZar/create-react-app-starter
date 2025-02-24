@@ -42,15 +42,75 @@ function SingleProduct({ product }) {
 
   return (
     <section>
-      <div>
-        <h2>product</h2>
-        <img
-          src={product.image.url}
-          alt={product.image.alt || 'product'}
-          className="w-96 h-96"
-        />
-        <p>{product.title}</p>
+      <div className="grid grid-cols-2">
         <div>
+          <h1>{product.title}</h1>
+          <img
+            src={product.image.url}
+            alt={product.image.alt || 'product'}
+            className="w-96 h-96"
+          />
+        </div>
+
+        <div className="subgrid ">
+          <h2>Product Details</h2>
+          <h4>{product.description}</h4>
+
+          <p>
+            Rating : {product.rating} Stars from{' '}
+            {product.reviews.length === 1
+              ? '1 review'
+              : `${product.reviews.length} reviews`}
+          </p>
+          {product.discountedPrice < product.price ? (
+            // <div className="flex gap-2 mt-4 flex-col">
+            <div className="grid subgrid gap-2">
+              <div className="flex gap-2 ">
+                <p className="line-through">{product.price} </p>
+                <p>{product.discountedPrice} nok</p>
+              </div>
+              <p>
+                Save{' '}
+                {Number(product.price - product.discountedPrice).toFixed(2)} nok
+              </p>
+            </div>
+          ) : (
+            <p className="mt-4">{product.price} nok</p>
+          )}
+
+          <div>
+            {product.tags.length === 1 ? (
+              <h3>Category</h3>
+            ) : (
+              <h3>Categories</h3>
+            )}
+            {product.tags.length > 0
+              ? product.tags.map((tag, index) => (
+                  <div>
+                    {' '}
+                    <ul key={index}>
+                      <li>{tag}</li>
+                    </ul>
+                  </div>
+                ))
+              : null}
+          </div>
+          <div>
+            {product.reviews.length > 0
+              ? product.reviews.map(review => (
+                  <div key={review.id}>
+                    <h5> users review 👇</h5>
+                    <p>{review.username}</p>
+                    <p>{review.rating}</p>
+                    <p>{review.description}</p>
+                  </div>
+                ))
+              : null}
+          </div>
+          <button className="btn-primary">Add to cart</button>
+          <button className="btn-primary">Buy now</button>
+        </div>
+        {/* <div>
           {Number(product.discountedPrice) < Number(product.price) ? (
             <span>
               <p className="line-through">{product.price}</p>
@@ -65,18 +125,7 @@ function SingleProduct({ product }) {
 
         <p>{product.rating}</p>
         <h2>reviews</h2>
-        <div>
-          {product.reviews.length > 0
-            ? product.reviews.map(review => (
-                <div key={review.id}>
-                  <h5> users review 👇</h5>
-                  <p>{review.username}</p>
-                  <p>{review.rating}</p>
-                  <p>{review.description}</p>
-                </div>
-              ))
-            : null}
-        </div>
+
         <h2>tags</h2>
         <div>
           {product.tags.length > 0
@@ -87,7 +136,7 @@ function SingleProduct({ product }) {
               ))
             : null}
         </div>
-        <button>Buy Now</button>
+        <button>Buy Now</button> */}
       </div>
     </section>
   );
