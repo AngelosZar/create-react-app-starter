@@ -41,7 +41,7 @@ export default function Home() {
       <SearchBar />
       <ProductsFeed products={products} />
       <QuoteSection />
-      <TestimonialSection />
+      {/* <TestimonialSection /> */}
     </Layout>
   );
 }

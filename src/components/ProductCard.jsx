@@ -67,8 +67,10 @@ export function ProductCard({ product }) {
         clear
       </button> */}
       {/*  */}
+      {/* <button
+        className="bg-blue-3 text-white rounded-lg p-2 mt-4 self-end justify-self-end absolute bottom-4 right-4 btn-primary" */}
       <button
-        className="bg-blue-3 text-white rounded-lg p-2 mt-4 self-end justify-self-end absolute bottom-4 right-4"
+        className="btn-primary justify-self-end absolute self-end bottom-4 right-4"
         onClick={() => addToCart(product)}
       >
         Add to Cart
