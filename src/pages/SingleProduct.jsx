@@ -56,7 +56,6 @@ function SingleProduct({ product }) {
           <h2 className="mt-16 mb-4">Product Details</h2>
           <h4 className="mb-4">{product.description}</h4>
           {product.discountedPrice < product.price ? (
-            // <div className="flex gap-2 mt-4 flex-col">
             <div className="grid subgrid gap-2 mb-6">
               <div className="flex gap-2 ">
                 <p className="line-through">{product.price} </p>
@@ -94,16 +93,6 @@ function SingleProduct({ product }) {
                   : null}
               </ul>
             </div>
-            {/* {product.tags.length > 0
-              ? product.tags.map((tag, index) => (
-                  <div>
-                    {' '}
-                    <ul key={index} className="mt-1 ">
-                      <li className="w-6">{tag}</li>
-                    </ul>
-                  </div>
-                ))
-              : null} */}
           </div>
           <div>
             {product.reviews.length > 0
@@ -119,7 +108,7 @@ function SingleProduct({ product }) {
           </div>
           <div className="absolute bottom-4 right-4 flex gap-4">
             <button className="btn-primary">Add to cart</button>
-            <button className="btn-primary">Buy now</button>
+            <button className="btn-secondary">Buy now</button>
           </div>
         </div>
         {/* <div>
