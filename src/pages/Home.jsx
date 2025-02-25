@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout';
 import { ProductsFeed } from '../components/ProductsFeed';
 import { HeroOnHome } from '../components/HeroOnHome';
 import { QuoteSection } from '../components/QuoteSection';
-import { TestimonialSection } from '../components/TestimonialSection';
+// import { TestimonialSection } from '../components/TestimonialSection';
 import { SearchBar } from '../components/SearchBar';
 import { useState, useEffect } from 'react';
 //

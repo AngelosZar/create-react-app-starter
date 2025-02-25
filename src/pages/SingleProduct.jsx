@@ -1,8 +1,10 @@
 import Layout from '../layouts/Layout';
-import { useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { Link, redirect, useParams, useNavigate } from 'react-router-dom';
+import { useState, useEffect, useContext, use } from 'react';
 import { getSingleProductUrl } from '../constants/apiEndPoints';
 import { ChevronDown } from 'lucide-react';
+import { CartContext } from '../contexts/CartContext';
+
 //
 export default function SingleProductPage() {
   const [product, setProduct] = useState(null);
@@ -38,7 +40,11 @@ export default function SingleProductPage() {
 
 function SingleProduct({ product }) {
   const [isReviewsOpen, setIsReviewsOpen] = useState(false);
+  const { cart, addToCart, removeFromCart, clearCart } =
+    useContext(CartContext);
   //  add a loading spinner / or the sceleton thing
+
+  const navigate = useNavigate();
   if (!product) {
     return <p>Loading...</p>;
   }
@@ -126,8 +132,18 @@ function SingleProduct({ product }) {
                 : null)}
           </div>
           <div className="absolute bottom-4 right-4 flex gap-4">
-            <button className="btn-primary">Add to cart</button>
-            <button className="btn-secondary">Buy now</button>
+            <button className="btn-primary" onClick={() => addToCart(product)}>
+              Add to cart
+            </button>
+            <button
+              className="btn-secondary"
+              onClick={() => {
+                addToCart(product);
+                navigate('/cart');
+              }}
+            >
+              Buy now
+            </button>
           </div>
         </div>
       </div>
