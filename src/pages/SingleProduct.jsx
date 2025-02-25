@@ -2,6 +2,7 @@ import Layout from '../layouts/Layout';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getSingleProductUrl } from '../constants/apiEndPoints';
+import { ChevronDown } from 'lucide-react';
 //
 export default function SingleProductPage() {
   const [product, setProduct] = useState(null);
@@ -26,6 +27,7 @@ export default function SingleProductPage() {
     }
     fetchData();
   }, [id]);
+
   return (
     <Layout>
       <SingleProduct product={product} />
@@ -35,14 +37,17 @@ export default function SingleProductPage() {
 }
 
 function SingleProduct({ product }) {
+  const [isReviewsOpen, setIsReviewsOpen] = useState(false);
   //  add a loading spinner / or the sceleton thing
   if (!product) {
     return <p>Loading...</p>;
   }
-
+  function toggleReviewDropdown() {
+    setIsReviewsOpen(!isReviewsOpen);
+  }
   return (
     <section className="mt-12 relative">
-      <div className="grid grid-cols-2 mt-4 gap-8 bg-slate-100 p-8 rounded-lg shadow-md">
+      <div className="grid  grid-rows-1  md:grid-cols-2 mt-4 gap-8 bg-slate-100 p-8 rounded-lg shadow-md">
         <div>
           <h1 className="mb-6">{product.title}</h1>
           <img
@@ -95,49 +100,36 @@ function SingleProduct({ product }) {
             </div>
           </div>
           <div>
-            {product.reviews.length > 0
-              ? product.reviews.map(review => (
-                  <div key={review.id}>
-                    <h5> users review 👇</h5>
-                    <p>{review.username}</p>
-                    <p>{review.rating}</p>
-                    <p>{review.description}</p>
-                  </div>
-                ))
-              : null}
+            {product.reviews.length > 0 ? (
+              <button
+                className="flex items-center gap-2"
+                onClick={toggleReviewDropdown}
+              >
+                Users reviews
+                <span>
+                  <ChevronDown className="mt-6  -ml-2 transform transition-transform hover:scale-125  hover:text-blue-3" />
+                </span>
+              </button>
+            ) : null}
+          </div>
+          <div>
+            {isReviewsOpen &&
+              (product.reviews.length > 0
+                ? product.reviews.map(review => (
+                    <div key={review.id}>
+                      <h5> users review 👇</h5>
+                      <p>{review.username}</p>
+                      <p>{review.rating}</p>
+                      <p>{review.description}</p>
+                    </div>
+                  ))
+                : null)}
           </div>
           <div className="absolute bottom-4 right-4 flex gap-4">
             <button className="btn-primary">Add to cart</button>
             <button className="btn-secondary">Buy now</button>
           </div>
         </div>
-        {/* <div>
-          {Number(product.discountedPrice) < Number(product.price) ? (
-            <span>
-              <p className="line-through">{product.price}</p>
-              <p className="">{product.discountedPrice}</p>
-            </span>
-          ) : (
-            <p className="">{product.price}</p>
-          )}
-        </div>
-
-        <p>{product.description}</p>
-
-        <p>{product.rating}</p>
-        <h2>reviews</h2>
-
-        <h2>tags</h2>
-        <div>
-          {product.tags.length > 0
-            ? product.tags.map((tag, index) => (
-                <ul key={index}>
-                  <li>{tag}</li>
-                </ul>
-              ))
-            : null}
-        </div>
-        <button>Buy Now</button> */}
       </div>
     </section>
   );
