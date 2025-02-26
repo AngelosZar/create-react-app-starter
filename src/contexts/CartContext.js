@@ -39,7 +39,7 @@ export function CartProvider({ children }) {
     //
     setCart(newCart);
     setCartItems(cartItems + 1);
-    setCartTotal(Number);
+    setCartTotal(cartTotal + product.price);
     //
     console.log(newCart);
     console.log(cartItems);
@@ -61,15 +61,6 @@ export function CartProvider({ children }) {
     setCart(newCart);
   };
   //
-  const deleteFromCart = product => {
-    if (cart.find(item => item.id === product.id)) {
-      let newCart = cart.filter(item => item.id !== product.id);
-      setCart(newCart);
-      setCartItems(cartItems - product.quantity);
-      setCartTotal(cartTotal - product.price * product.quantity);
-    }
-  };
-  //
   return (
     <CartContext.Provider
       value={{
@@ -82,7 +73,6 @@ export function CartProvider({ children }) {
         addToCart,
         removeFromCart,
         clearCart,
-        deleteFromCart,
       }}
     >
       {children}

@@ -12,7 +12,6 @@ export default function Cart() {
     setCartItems,
     cartItems,
     cartTotal,
-    deleteFromCart,
   } = useContext(CartContext);
   console.log(cart);
 
@@ -28,7 +27,6 @@ export default function Cart() {
           setCartItems={setCartItems}
           cartTotal={cartTotal}
           cartItems={cartItems}
-          deleteFromCart={deleteFromCart}
         />
       </section>
     </Layout>
@@ -57,13 +55,12 @@ function OrderSummary({
   cartItems,
   setCartItems,
   cartTotal,
-  deleteFromCart,
 }) {
   // display cart items
   // calculate
   // display total
   return (
-    <section className="flex flex-col-reverse gap-4">
+    <section className="">
       <div className="">
         <CartItem
           cart={cart}
@@ -71,31 +68,20 @@ function OrderSummary({
           removeFromCart={removeFromCart}
           cartTotal={cartTotal}
           cartItems={cartItems}
-          deleteFromCart={deleteFromCart}
         />
       </div>
       <div className="mt-12 border-y-2 border-blue-3 py-1 md:px-4">
         <h3>Order Summary</h3>
-        <p>Subtotal: {Number(cartTotal).toFixed(2)}</p>
+        <p>Subtotal: {cartTotal}</p>
         <p>Shipping: {cartItems} products</p>
-
-        <button onClick={clearCart} className="hover:text-red-500">
-          Empty cart
-        </button>
-
+        <button onClick={clearCart}>Empty cart</button>
+        <br />
         <p>add promo code</p>
       </div>
     </section>
   );
 }
-function CartItem({
-  cart,
-  addToCart,
-  removeFromCart,
-  cartTotal,
-  cartItems,
-  deleteFromCart,
-}) {
+function CartItem({ cart, addToCart, removeFromCart, cartTotal, cartItems }) {
   return cart.map(product => (
     <div
       key={product.id}
@@ -134,7 +120,7 @@ function CartItem({
         <span className="self-end">
           <button
             className="hover:text-red-500"
-            onClick={() => deleteFromCart(product)}
+            onClick={() => removeFromCart(product)}
           >
             Remove
           </button>
