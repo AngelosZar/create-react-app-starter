@@ -12,6 +12,7 @@ export default function Cart() {
     setCartItems,
     cartItems,
     cartTotal,
+    deleteFromCart,
   } = useContext(CartContext);
   console.log(cart);
 
@@ -27,6 +28,7 @@ export default function Cart() {
           setCartItems={setCartItems}
           cartTotal={cartTotal}
           cartItems={cartItems}
+          deleteFromCart={deleteFromCart}
         />
       </section>
     </Layout>
@@ -55,12 +57,13 @@ function OrderSummary({
   cartItems,
   setCartItems,
   cartTotal,
+  deleteFromCart,
 }) {
   // display cart items
   // calculate
   // display total
   return (
-    <section className="">
+    <section className="flex flex-col-reverse gap-4">
       <div className="">
         <CartItem
           cart={cart}
@@ -68,20 +71,31 @@ function OrderSummary({
           removeFromCart={removeFromCart}
           cartTotal={cartTotal}
           cartItems={cartItems}
+          deleteFromCart={deleteFromCart}
         />
       </div>
       <div className="mt-12 border-y-2 border-blue-3 py-1 md:px-4">
         <h3>Order Summary</h3>
-        <p>Subtotal: {cartTotal}</p>
+        <p>Subtotal: {Number(cartTotal).toFixed(2)}</p>
         <p>Shipping: {cartItems} products</p>
-        <button onClick={clearCart}>Empty cart</button>
-        <br />
+
+        <button onClick={clearCart} className="hover:text-red-500">
+          Empty cart
+        </button>
+
         <p>add promo code</p>
       </div>
     </section>
   );
 }
-function CartItem({ cart, addToCart, removeFromCart, cartTotal, cartItems }) {
+function CartItem({
+  cart,
+  addToCart,
+  removeFromCart,
+  cartTotal,
+  cartItems,
+  deleteFromCart,
+}) {
   return cart.map(product => (
     <div
       key={product.id}
@@ -120,7 +134,7 @@ function CartItem({ cart, addToCart, removeFromCart, cartTotal, cartItems }) {
         <span className="self-end">
           <button
             className="hover:text-red-500"
-            onClick={() => removeFromCart(product)}
+            onClick={() => deleteFromCart(product)}
           >
             Remove
           </button>
