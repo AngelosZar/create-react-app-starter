@@ -60,45 +60,72 @@ function OrderSummary({
   // calculate
   // display total
   return (
-    <section>
-      <CartItem
-        cart={cart}
-        addToCart={addToCart}
-        removeFromCart={removeFromCart}
-        cartTotal={cartTotal}
-        cartItems={cartItems}
-      />
-      <h3>Order Summary</h3>
-      <p>Subtotal: {cartTotal}</p>
-      <p>Shipping: {cartItems} products</p>
-      <button onClick={clearCart}>Empty cart</button>
-      <br />
-      <p>add promo code</p>
+    <section className="">
+      <div className="">
+        <CartItem
+          cart={cart}
+          addToCart={addToCart}
+          removeFromCart={removeFromCart}
+          cartTotal={cartTotal}
+          cartItems={cartItems}
+        />
+      </div>
+      <div className="mt-12 border-y-2 border-blue-3 py-1 md:px-4">
+        <h3>Order Summary</h3>
+        <p>Subtotal: {cartTotal}</p>
+        <p>Shipping: {cartItems} products</p>
+        <button onClick={clearCart}>Empty cart</button>
+        <br />
+        <p>add promo code</p>
+      </div>
     </section>
   );
 }
 function CartItem({ cart, addToCart, removeFromCart, cartTotal, cartItems }) {
-  // render product details
-  // remove product // add and minus on quantity
   return cart.map(product => (
-    <div key={product.id}>
-      <h3>{product.title}</h3>
-      <p>Price: {product.price}</p>
-      <p>Quantity: {product.quantity}</p>
-      <p></p>
-      <button onClick={() => addToCart(product)}>+</button>
-      <p>fd</p>
-      <button onClick={() => removeFromCart(product)}>-</button>
+    <div
+      key={product.id}
+      className="flex flex-col gap-4 sm:flex-row justify-center items-center mt-12 border-y-2 border-blue-3 py-1 md:px-4"
+    >
+      <div className="flex flex-col gap-2 justify-center items-center">
+        <img
+          src={product.image.url}
+          alt={product.title}
+          className="object-cover  max-w-44  max-h-auto flex-shrink-0 "
+        />
+      </div>
+      <div className="flex flex-col gap-2 max-w-sm justify-center items-center text-center sm:text-start sm:items-start sm:justify-start px-4">
+        <h3>{product.title}</h3>
+        <p className="">{product.description}</p>
+        {/* {product.discountedPrice < product.price ? (
+          <div className="grid subgrid gap-2 mb-6">
+            <div className="flex gap-2 ">
+              <p className="line-through">{product.price} </p>
+              <p>{product.discountedPrice} nok</p>
+            </div>
+            <p>
+              Save {Number(product.price - product.discountedPrice).toFixed(2)}{' '}
+              nok
+            </p>
+          </div>
+        ) : (
+          <p className="mt-4">{product.price} nok</p>
+        )} */}
+        <p>Price: {product.price}</p>
+        <span className="flex flex-row gap-4">
+          <button onClick={() => removeFromCart(product)}>-</button>
+          <p>{product.quantity}</p>
+          <button onClick={() => addToCart(product)}>+</button>
+        </span>
+        <span className="self-end">
+          <button
+            className="hover:text-red-500"
+            onClick={() => removeFromCart(product)}
+          >
+            Remove
+          </button>
+        </span>
+      </div>
     </div>
   ));
 }
-
-// </div>)
-// <CartItem />
-// <div>
-//   <h3>Product Name</h3>
-//   <p>Price: 10</p>
-//   <p>Quantity: 2</p>
-//   <p>Total: 20</p>
-//   <button>Remove</button>
-// </div>
