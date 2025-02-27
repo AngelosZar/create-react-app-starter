@@ -52,8 +52,8 @@ function SingleProduct({ product }) {
     setIsReviewsOpen(!isReviewsOpen);
   }
   return (
-    <section className="mt-12 relative">
-      <div className="grid  grid-rows-1  md:grid-cols-2 mt-4 gap-8 bg-slate-100 p-8 rounded-lg shadow-md">
+    <section className="mt-12">
+      <div className="grid grid-rows-1 md:grid-cols-2 mt-4 gap-8 bg-white p-8 rounded-lg shadow-md max-w-5xl mx-auto relative">
         <div>
           <h1 className="mb-6">{product.title}</h1>
           <img
@@ -63,7 +63,7 @@ function SingleProduct({ product }) {
           />
         </div>
 
-        <div className="subgrid">
+        <div className="subgrid mb-8">
           <h2 className="mt-16 mb-4">Product Details</h2>
           <h4 className="mb-4">{product.description}</h4>
           {product.discountedPrice < product.price ? (
@@ -80,12 +80,17 @@ function SingleProduct({ product }) {
           ) : (
             <p className="mt-4">{product.price} nok</p>
           )}
-          <p className="mb-4">
-            Rating : {product.rating} Stars from{' '}
-            {product.reviews.length === 1
-              ? '1 review'
-              : `${product.reviews.length} reviews`}
-          </p>
+
+          {product.rating > 1 ? (
+            <p className="mb-4">
+              Rating : {product.rating} Stars from{' '}
+              {product.reviews.length === 1
+                ? '1 review'
+                : `${product.reviews.length} reviews`}
+            </p>
+          ) : (
+            'No reviews yet'
+          )}
 
           <div>
             {product.tags.length === 1 ? (
@@ -113,7 +118,7 @@ function SingleProduct({ product }) {
               >
                 Users reviews
                 <span>
-                  <ChevronDown className="mt-6  -ml-2 transform transition-transform hover:scale-125  hover:text-blue-3" />
+                  <ChevronDown className="mt-6 -ml-2 transform transition-transform hover:scale-125  hover:text-blue-3" />
                 </span>
               </button>
             ) : null}
