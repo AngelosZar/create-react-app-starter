@@ -12,6 +12,7 @@ export default function Cart() {
     setCartItems,
     cartItems,
     cartTotal,
+    deleteFromCart,
   } = useContext(CartContext);
   console.log(cart);
 
@@ -27,6 +28,7 @@ export default function Cart() {
           setCartItems={setCartItems}
           cartTotal={cartTotal}
           cartItems={cartItems}
+          deleteFromCart={deleteFromCart}
         />
       </section>
     </Layout>
@@ -55,6 +57,7 @@ function OrderSummary({
   cartItems,
   setCartItems,
   cartTotal,
+  deleteFromCart,
 }) {
   // display cart items
   // calculate
@@ -68,6 +71,7 @@ function OrderSummary({
           removeFromCart={removeFromCart}
           cartTotal={cartTotal}
           cartItems={cartItems}
+          deleteFromCart={deleteFromCart}
         />
       </div>
       <div className="mt-12 border-y-2 border-blue-3 py-1 md:px-4">
@@ -81,7 +85,14 @@ function OrderSummary({
     </section>
   );
 }
-function CartItem({ cart, addToCart, removeFromCart, cartTotal, cartItems }) {
+function CartItem({
+  cart,
+  addToCart,
+  removeFromCart,
+  cartTotal,
+  cartItems,
+  deleteFromCart,
+}) {
   return cart.map(product => (
     <div
       key={product.id}
@@ -97,6 +108,7 @@ function CartItem({ cart, addToCart, removeFromCart, cartTotal, cartItems }) {
       <div className="flex flex-col gap-2 max-w-sm justify-center items-center text-center sm:text-start sm:items-start sm:justify-start px-4">
         <h3>{product.title}</h3>
         <p className="">{product.description}</p>
+        {/* calculate total discount / how much user saves  */}
         {/* {product.discountedPrice < product.price ? (
           <div className="grid subgrid gap-2 mb-6">
             <div className="flex gap-2 ">
@@ -120,8 +132,9 @@ function CartItem({ cart, addToCart, removeFromCart, cartTotal, cartItems }) {
         <span className="self-end">
           <button
             className="hover:text-red-500"
-            onClick={() => removeFromCart(product)}
+            onClick={() => deleteFromCart(product)}
           >
+            {/* display message are you sure you want to delete the item */}
             Remove
           </button>
         </span>

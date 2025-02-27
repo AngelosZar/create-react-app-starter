@@ -61,6 +61,15 @@ export function CartProvider({ children }) {
     setCart(newCart);
   };
   //
+  const deleteFromCart = product => {
+    let itemToRemove = cart.find(item => item.id === product.id);
+    let newCart = cart.filter(item => item.id !== product.id);
+    //
+    setCart(newCart);
+    setCartItems(cartItems - itemToRemove.quantity);
+    setCartTotal(cartTotal - itemToRemove.quantity * itemToRemove.price);
+  };
+  //
   return (
     <CartContext.Provider
       value={{
@@ -73,6 +82,7 @@ export function CartProvider({ children }) {
         addToCart,
         removeFromCart,
         clearCart,
+        deleteFromCart,
       }}
     >
       {children}
