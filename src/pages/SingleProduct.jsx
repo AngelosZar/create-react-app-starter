@@ -2,7 +2,7 @@ import Layout from '../layouts/Layout';
 import { Link, redirect, useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect, useContext, use } from 'react';
 import { getSingleProductUrl } from '../constants/apiEndPoints';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 import { CartContext } from '../contexts/CartContext';
 
 //
@@ -52,8 +52,8 @@ function SingleProduct({ product }) {
     setIsReviewsOpen(!isReviewsOpen);
   }
   return (
-    <section className="mt-12">
-      <div className="grid grid-rows-1 md:grid-cols-2 mt-4 gap-8 bg-white p-8 rounded-lg shadow-md max-w-5xl mx-auto relative">
+    <section className="mt-12 mx-8">
+      <div className="grid grid-rows-1 md:grid-cols-2 mt-4 gap-8 bg-white p-8 rounded-lg shadow-md max-w-5xl mx-auto relative ">
         <div>
           <h1 className="mb-6">{product.title}</h1>
           <img
@@ -72,7 +72,7 @@ function SingleProduct({ product }) {
                 <p className="line-through">{product.price} </p>
                 <p>{product.discountedPrice} nok</p>
               </div>
-              <p>
+              <p className="text-blue-2 font-semi-bold">
                 Save{' '}
                 {Number(product.price - product.discountedPrice).toFixed(2)} nok
               </p>
@@ -117,9 +117,15 @@ function SingleProduct({ product }) {
                 onClick={toggleReviewDropdown}
               >
                 Users reviews
-                <span>
-                  <ChevronDown className="mt-6 -ml-2 transform transition-transform hover:scale-125  hover:text-blue-3" />
-                </span>
+                {isReviewsOpen ? (
+                  <span>
+                    <ChevronUp className="mt-6 -ml-2 transform transition-transform hover:scale-125  hover:text-blue-3" />
+                  </span>
+                ) : (
+                  <span>
+                    <ChevronDown className="mt-6 -ml-2 transform transition-transform hover:scale-125  hover:text-blue-3" />
+                  </span>
+                )}
               </button>
             ) : null}
           </div>
@@ -127,11 +133,14 @@ function SingleProduct({ product }) {
             {isReviewsOpen &&
               (product.reviews.length > 0
                 ? product.reviews.map(review => (
-                    <div key={review.id}>
-                      <h5> users review 👇</h5>
-                      <p>{review.username}</p>
-                      <p>{review.rating}</p>
-                      <p>{review.description}</p>
+                    <div
+                      key={review.id}
+                      className="mb-4 border-2 p-2 rounded-xl border-blue-3"
+                    >
+                      <h5> Users review</h5>
+                      <p>User: {review.username}</p>
+                      <p> Rating: {review.rating}</p>
+                      <p className="text-blue-2">{review.description}</p>
                     </div>
                   ))
                 : null)}
