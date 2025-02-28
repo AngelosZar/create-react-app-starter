@@ -1,6 +1,7 @@
 import Layout from '../layouts/Layout';
 import { useContext } from 'react';
 import { CartContext } from '../contexts/CartContext';
+import { useNavigate } from 'react-router-dom';
 //
 export default function Cart() {
   //
@@ -36,19 +37,103 @@ export default function Cart() {
 }
 
 function CheckoutForm() {
+  let navigate = useNavigate();
   // refine form fields
   // Add form validation
   return (
-    <div>
-      <form>
-        <input type="text" placeholder="Name" />
-        <input type="text" placeholder="Email" />
-        <input type="text" placeholder="Address" />
-        <button type="submit">send</button>
+    <div className="mt-12 border-y-2 border-blue-3 py-1 px-4 text-center">
+      <h3 className="mb-2 mt-4">Proceed to checkout</h3>
+      <p className="mb-6">Fill in your details</p>
+      <form className="flex flex-col gap-4 max-w-xs mx-auto">
+        <div className="flex gap-4">
+          <input type="text" placeholder="First name" className="form-input" />
+          <input type="text" placeholder="Last name" className="form-input" />
+        </div>
+        <input type="text" placeholder="Email" className="form-input " />
+        <input type="text" placeholder="Address" className="form-input " />
+        <div className="flex gap-4">
+          <input type="text" placeholder="City" className="form-input" />
+          <input type="text" placeholder="Zip code" className="form-input " />
+        </div>
+        <div className="flex flex-col gap-4">
+          <h2 className="pb-6">Continue to payment</h2>
+          <fieldset className="flex flex-col gap-4">
+            <div className="flex flex-col border-2 border-blue-3 rounded-lg p-4 gap-4">
+              <span className="flex flex-row gap-2">
+                <input type="radio" id="paypal" name="payment" value="paypal" />
+                <label htmlFor="paypal">Paypal</label>
+              </span>
+              <h6>Continue with paypal</h6>
+            </div>
+            <div className="flex flex-col border-2 border-blue-3 rounded-lg p-4 gap-4">
+              <span className="flex flex-row gap-2">
+                <input type="radio" id="vipps" name="payment" value="vipps" />
+                <label htmlFor="vipps">Vipps</label>
+              </span>
+              <h6>Continue with Vipps</h6>
+            </div>
+            <div className="flex flex-col border-2 border-blue-3 p-4 gap-4 rounded-lg ">
+              <span className="flex flex-row gap-2">
+                <input type="radio" id="visa" name="payment" value="visa" />
+                <label htmlFor="visa">Visa</label>
+              </span>
+              <h6>Pay with Visa</h6>
+            </div>
+          </fieldset>
+          {/* <fieldset className="flex flex-col mb-4">
+            <legend className="mb-4 text-xl">By PayPal</legend>
+            <input type="text" placeholder="Email" className="form-input " />
+            <input type="text" placeholder="Password" className="form-input " />
+            <button type="submit" className=" btn-primary">
+              Submit
+            </button>
+          </fieldset>
+
+          <fieldset>
+            <legend className="mb-4 text-xl">By card</legend>
+            <div className="flex gap-4">
+              <input
+                type="text"
+                placeholder="Card number"
+                className="form-input"
+              />
+              <input type="text" placeholder="MM/YY" className="form-input" />
+              <input type="text" placeholder="CVC" className="form-input" />
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend className="mb-4 text-xl">By Vipps</legend>
+            <input
+              type="text"
+              placeholder="Phone number"
+              className="form-input"
+            />
+            <button type="submit" className="btn-primary">
+              Submit
+            </button>
+          </fieldset> */}
+          <div className="flex flex-row gap-4">
+            <button
+              type="submit"
+              className="btn-primary"
+              onClick={() => navigate('/checkout-success')}
+            >
+              Checkout
+            </button>
+            <button
+              type="submit"
+              className="btn-secondary"
+              onClick={() => navigate('/')}
+            >
+              Continue shopping
+            </button>
+          </div>
+        </div>
       </form>
     </div>
   );
 }
+//
 function OrderSummary({
   cart,
   addToCart,
@@ -74,17 +159,29 @@ function OrderSummary({
           deleteFromCart={deleteFromCart}
         />
       </div>
-      <div className="mt-12 border-y-2 border-blue-3 py-1 md:px-4">
-        <h3>Order Summary</h3>
-        <p>Subtotal: {cartTotal}</p>
-        <p>Shipping: {cartItems} products</p>
-        <button onClick={clearCart}>Empty cart</button>
+
+      <div className="mt-12 border-y-2 border-blue-3 py-1 flex  flex-col  justify-center gap-2 md:px-4">
+        <h2 className="text-blue-2">Order Summary</h2>
+        <p>Subtotal: {Number(cartTotal).toFixed(2)} nok</p>
+        <p>Shipping: 0 nok</p>
+        <p>Tax: 0 nok</p>
+        <hr className="w-[30%] h-1 bg-blue-2" />
+        <h4 className="text-blue-2">
+          Total: {Number(cartTotal).toFixed(2)} nok
+        </h4>
+        <button
+          onClick={clearCart}
+          className="text-red-500 hover:text-red-700 self-start"
+        >
+          Empty cart
+        </button>
         <br />
-        <p>add promo code</p>
+        <CheckoutForm />
       </div>
     </section>
   );
 }
+//
 function CartItem({
   cart,
   addToCart,
@@ -96,7 +193,7 @@ function CartItem({
   return cart.map(product => (
     <div
       key={product.id}
-      className="flex flex-col gap-4 sm:flex-row justify-center items-center mt-12 border-y-2 border-blue-3 py-1 md:px-4"
+      className="flex flex-col gap-4 sm:flex-row justify-center items-center mt-12 border-y-2 border-blue-3 py-1 md:px-4 shadow-lg"
     >
       <div className="flex flex-col gap-2 justify-center items-center">
         <img
@@ -105,7 +202,7 @@ function CartItem({
           className="object-cover  max-w-44  max-h-auto flex-shrink-0 "
         />
       </div>
-      <div className="flex flex-col gap-2 max-w-sm justify-center items-center text-center sm:text-start sm:items-start sm:justify-start px-4">
+      <div className="flex flex-col gap-2 max-w-sm justify-center items-center text-center sm:text-start sm:items-start sm:justify-start px-4 pt-8">
         <h3>{product.title}</h3>
         <p className="">{product.description}</p>
         {/* calculate total discount / how much user saves  */}
@@ -124,6 +221,11 @@ function CartItem({
           <p className="mt-4">{product.price} nok</p>
         )} */}
         <p>Price: {product.price}</p>
+        <p>
+          {product.quantity > 1
+            ? `Total is ${product.quantity * product.price}`
+            : ''}
+        </p>
         <span className="flex flex-row gap-4">
           <button onClick={() => removeFromCart(product)}>-</button>
           <p>{product.quantity}</p>
