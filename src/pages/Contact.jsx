@@ -15,20 +15,31 @@ export default function Contact() {
 }
 function ContactForm() {
   return (
-    <section>
-      <h1>Contact Us</h1>
-      <p>Send us a message</p>
-      <form>
-        <input type="text" placeholder="Name" />
-        <input type="text" placeholder="Email" />
-        <input type="text" placeholder="Message" />
-        <button type="submit">Submit</button>
+    <section className="flex flex-col w-full max-w-lg justify-center items-center mx-auto my-12 p-8 bg-white shadow-md rounded-lg gap-8">
+      <div className="flex flex-col items-center gap-3">
+        <h1 className="text-blue-1">Contact Us</h1>
+        <p>Send us a message</p>
+      </div>
+      <form className="flex flex-col w-full">
+        <input type="text" placeholder="Name" className="form-input" />
+        <input type="text" placeholder="Email" className="form-input" />
+        <textarea
+          name="message"
+          id="message"
+          className="form-input"
+          placeholder="Message"
+          rows={7}
+        ></textarea>
+
+        <button type="submit" className="btn-primary self-center">
+          Send message
+        </button>
       </form>
-      <div>
-        <p>other contact methods</p>
-        <p>address</p>
-        <p>email</p>
-        <p>phone</p>
+      <div className="flex flex-col gap-3 mt-8">
+        <h5>Other contact methods</h5>
+        <p>Address: Randomsveien 12 a</p>
+        <p>Email: support@onlineshop.no</p>
+        <p>Phone: 0047 789654123</p>
       </div>
     </section>
   );
