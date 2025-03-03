@@ -2,9 +2,9 @@ import { ProductCard } from './ProductCard';
 import { SearchBar } from './SearchBar';
 import { useState } from 'react';
 
-export function ProductsFeed({ products }) {
+export function ProductsFeed({ products, isLoading, setIsLoading }) {
   const [searchQuery, setSearchQuery] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
+
   const [error, setError] = useState(null);
   console.log(searchQuery);
   // console.log(products);
@@ -21,11 +21,14 @@ export function ProductsFeed({ products }) {
       return products;
     } else
       return (
-        product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        product?.description.toLowerCase().includes(searchQuery.toLowerCase())
+        product?.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        product?.description
+          .toLowerCase()
+          .includes(searchQuery.toLowerCase()) ||
         // error with tags array ??
-        //   ||
-        // product?.tag.toLowerCase().includes(searchQuery.toLowerCase())
+        product?.tags.some(tag =>
+          tag.toLowerCase().includes(searchQuery.toLowerCase())
+        )
       );
   });
 
@@ -34,6 +37,8 @@ export function ProductsFeed({ products }) {
     <section>
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {isLoading && <p>Loading...</p>}
+        {/* add a loading spinner later */}
         {filteredProd.map(product => {
           return <ProductCard key={product.id} product={product} />;
         })}

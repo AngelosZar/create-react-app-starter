@@ -16,10 +16,13 @@ import { ALLPRODUCTSURL } from '../constants/apiEndPoints';
 // The homepage should have a lookahead/auto-complete Search bar component. Typing values in the search bar should display products where the title matches the search input. Clicking on an item should take the user to the ProductPage page. Tip: Filter the user input and then display products that match the input.
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState();
   const [products, setProducts] = useState([]);
+
   useEffect(() => {
     async function fetchData() {
       try {
+        setIsLoading(true);
         const response = await fetch(ALLPRODUCTSURL);
         if (!response.ok) {
           throw new Error(`error ${response.status} `);
@@ -29,6 +32,7 @@ export default function Home() {
         const data = await response.json();
         setProducts(data.data);
         console.log(data);
+        setIsLoading(false);
         return data;
       } catch (error) {
         console.error(error);
@@ -41,7 +45,11 @@ export default function Home() {
     <Layout>
       <HeroOnHome />
       {/* <SearchBar /> */}
-      <ProductsFeed products={products} />
+      <ProductsFeed
+        products={products}
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
+      />
       <QuoteSection />
       {/* <TestimonialSection /> */}
     </Layout>
