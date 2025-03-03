@@ -25,8 +25,10 @@ export default function Home() {
           throw new Error(`error ${response.status} `);
         }
         console.log(response);
+
         const data = await response.json();
         setProducts(data.data);
+        console.log(data);
         return data;
       } catch (error) {
         console.error(error);
