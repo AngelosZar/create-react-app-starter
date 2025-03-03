@@ -4,7 +4,7 @@ import { ProductsFeed } from '../components/ProductsFeed';
 import { HeroOnHome } from '../components/HeroOnHome';
 import { QuoteSection } from '../components/QuoteSection';
 // import { TestimonialSection } from '../components/TestimonialSection';
-import { SearchBar } from '../components/SearchBar';
+// import { SearchBar } from '../components/SearchBar';
 import { useState, useEffect } from 'react';
 //
 import { ALLPRODUCTSURL } from '../constants/apiEndPoints';
@@ -38,7 +38,7 @@ export default function Home() {
   return (
     <Layout>
       <HeroOnHome />
-      <SearchBar />
+      {/* <SearchBar /> */}
       <ProductsFeed products={products} />
       <QuoteSection />
       {/* <TestimonialSection /> */}
