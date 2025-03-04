@@ -69,21 +69,25 @@ export function CartProvider({ children }) {
   const removeFromCart = product => {
     let newCart;
     let discountValue;
+    let itemToRemove = cart.find(item => item.id === product.id);
+    //
     if (cart.find(item => item.id === product.id)) {
       newCart = cart.map(item =>
         item.id === product.id ? { ...item, quantity: item.quantity - 1 } : item
       );
       newCart = newCart.filter(item => item.quantity > 0);
-      // setCart(newCart);
-      //   check if values are updated in the cart // async issue
-      // newCart = newCart.filter(item =>
+      if (itemToRemove && itemToRemove.price > itemToRemove.discountedPrice) {
+        setCartTotalDiscount(
+          Number(cartTotalDiscount) -
+            (itemToRemove.price - itemToRemove.discountedPrice)
+        );
+      }
       //   item.price > item.discountedPrice
       //     ? (discountValue = item.price - item.discountedPrice)
       //     : 0
       // );
       setCartItems(cartItems - 1);
       setCartTotal(cartTotal - product.price);
-      setCartTotalDiscount(Number(cartTotalDiscount) - Number(discountValue));
     }
     setCart(newCart);
   };
