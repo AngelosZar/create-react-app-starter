@@ -16,22 +16,32 @@ export default function Cart() {
     deleteFromCart,
   } = useContext(CartContext);
   console.log(cart);
-
+  const navigate = useNavigate();
   return (
     <Layout>
-      <section className="flex flex-col md:flex-row gap-4">
-        {/* <CheckoutForm /> */}
-        <OrderSummary
-          cart={cart}
-          addToCart={addToCart}
-          removeFromCart={removeFromCart}
-          clearCart={clearCart}
-          setCartItems={setCartItems}
-          cartTotal={cartTotal}
-          cartItems={cartItems}
-          deleteFromCart={deleteFromCart}
-        />
-      </section>
+      {cart.length > 0 ? (
+        <section className="flex flex-col md:flex-row gap-4">
+          {/* <CheckoutForm /> */}
+          <OrderSummary
+            cart={cart}
+            addToCart={addToCart}
+            removeFromCart={removeFromCart}
+            clearCart={clearCart}
+            setCartItems={setCartItems}
+            cartTotal={cartTotal}
+            cartItems={cartItems}
+            deleteFromCart={deleteFromCart}
+          />
+        </section>
+      ) : (
+        <div className="flex flex-col justify-center items-center w-full h-screen gap-4">
+          <h1 className="text-center ">Your cart is empty</h1>
+          <h2 className="text-blue-2">Go on shopping .. Fill it up</h2>
+          <button className="btn-primary" onClick={() => navigate('/')}>
+            Go shopping
+          </button>
+        </div>
+      )}
     </Layout>
   );
 }
