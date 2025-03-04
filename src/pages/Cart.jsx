@@ -14,8 +14,11 @@ export default function Cart() {
     cartItems,
     cartTotal,
     deleteFromCart,
+    cartTotalDiscount,
   } = useContext(CartContext);
+
   console.log(cart);
+  console.log(cartTotalDiscount);
   const navigate = useNavigate();
   return (
     <Layout>
@@ -31,6 +34,7 @@ export default function Cart() {
             cartTotal={cartTotal}
             cartItems={cartItems}
             deleteFromCart={deleteFromCart}
+            cartTotalDiscount={cartTotalDiscount}
           />
         </section>
       ) : (
@@ -153,6 +157,7 @@ function OrderSummary({
   setCartItems,
   cartTotal,
   deleteFromCart,
+  cartTotalDiscount,
 }) {
   // display cart items
   // calculate
@@ -173,9 +178,12 @@ function OrderSummary({
       <div className="mt-12 border-y-2 border-blue-3 py-1 flex  flex-col  justify-center gap-2 md:px-4">
         <h2 className="text-blue-2">Order Summary</h2>
         <p>Subtotal: {Number(cartTotal).toFixed(2)} nok</p>
+        <p>Discount: {cartTotalDiscount} nok</p>
+        <hr className="w-[30%] h-1 bg-blue-2" />
         <p>Shipping: 0 nok</p>
         <p>Tax: 0 nok</p>
         <hr className="w-[30%] h-1 bg-blue-2" />
+
         <h4 className="text-blue-2">
           Total: {Number(cartTotal).toFixed(2)} nok
         </h4>
@@ -203,19 +211,24 @@ function CartItem({
   return cart.map(product => (
     <div
       key={product.id}
-      className="flex flex-col gap-4 sm:flex-row justify-center items-center mt-12 border-y-2 border-blue-3 py-1 md:px-4 shadow-lg"
+      className="flex flex-col gap-4 sm:flex-row justify-center items-center mt-12 border-y-2 border-blue-3 py-1 md:px-4 shadow-lg max-w-sm"
     >
-      <div className="flex flex-col gap-2 justify-center items-center">
+      <div className="flex flex-col gap-2 justify-start max-w-44 max-h-auto flex-shrink-1">
         <img
           src={product.image.url}
           alt={product.title}
-          className="object-cover  max-w-44  max-h-auto flex-shrink-0 "
+          className="object-cover max-w-44 max-h-auto flex-shrink-1"
         />
       </div>
       <div className="flex flex-col gap-2 max-w-sm justify-center items-center text-center sm:text-start sm:items-start sm:justify-start px-4 pt-8">
         <h3>{product.title}</h3>
         <p className="">{product.description}</p>
         {/* calculate total discount / how much user saves  */}
+        {product.discountedPrice < product.price ? (
+          <p>discountedPrice: {product.discountedPrice} is working</p>
+        ) : (
+          <p>Price: {product.price} is working</p>
+        )}
         {/* {product.discountedPrice < product.price ? (
           <div className="grid subgrid gap-2 mb-6">
             <div className="flex gap-2 ">
@@ -230,12 +243,17 @@ function CartItem({
         ) : (
           <p className="mt-4">{product.price} nok</p>
         )} */}
-        <p>Price: {product.price}</p>
+        <p>Price: {product.discountedPrice}</p>
         <p>
           {product.quantity > 1
-            ? `Total is ${product.quantity * product.price}`
+            ? `Total is ${product.quantity * product.discountedPrice}`
             : ''}
         </p>
+        <p>
+          You save
+          {product.price - product.discountedPrice * product.quantity}
+        </p>
+
         <span className="flex flex-row gap-4">
           <button onClick={() => removeFromCart(product)}>-</button>
           <p>{product.quantity}</p>
