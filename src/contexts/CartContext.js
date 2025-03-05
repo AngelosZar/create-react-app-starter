@@ -22,6 +22,7 @@ export function CartProvider({ children }) {
       : 0;
   });
   //
+
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
@@ -41,7 +42,7 @@ export function CartProvider({ children }) {
   //
   const addToCart = product => {
     let newCart;
-    let discountValue;
+
     if (cart.find(item => item.id === product.id)) {
       newCart = cart.map(item =>
         item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
@@ -49,16 +50,19 @@ export function CartProvider({ children }) {
     } else {
       newCart = [...cart, { ...product, quantity: 1 }];
     }
-    newCart = newCart.filter(item =>
-      item.price > item.discountedPrice
-        ? (discountValue = item.price - item.discountedPrice)
-        : 0
-    );
-    //
+
+    const discountValue =
+      product.price === product.discountedPrice
+        ? 0
+        : product.price - product.discountedPrice;
+
     setCart(newCart);
     setCartItems(cartItems + 1);
     setCartTotal(cartTotal + product.price);
-    setCartTotalDiscount(Number(cartTotalDiscount) + Number(discountValue));
+    if (discountValue > 0) {
+      setCartTotalDiscount(Number(cartTotalDiscount) + Number(discountValue));
+    }
+
     //
     console.log(newCart);
     console.log(cartItems);
@@ -68,7 +72,7 @@ export function CartProvider({ children }) {
   //
   const removeFromCart = product => {
     let newCart;
-    let discountValue;
+
     let itemToRemove = cart.find(item => item.id === product.id);
     //
     if (cart.find(item => item.id === product.id)) {
@@ -76,16 +80,19 @@ export function CartProvider({ children }) {
         item.id === product.id ? { ...item, quantity: item.quantity - 1 } : item
       );
       newCart = newCart.filter(item => item.quantity > 0);
-      if (itemToRemove && itemToRemove.price > itemToRemove.discountedPrice) {
+
+      if (itemToRemove && itemToRemove.price === itemToRemove.discountedPrice) {
+        setCartTotalDiscount(Number(cartTotalDiscount));
+      } else if (
+        itemToRemove &&
+        itemToRemove.price > itemToRemove.discountedPrice
+      ) {
         setCartTotalDiscount(
           Number(cartTotalDiscount) -
             (itemToRemove.price - itemToRemove.discountedPrice)
         );
       }
-      //   item.price > item.discountedPrice
-      //     ? (discountValue = item.price - item.discountedPrice)
-      //     : 0
-      // );
+
       setCartItems(cartItems - 1);
       setCartTotal(cartTotal - product.price);
     }
@@ -101,8 +108,8 @@ export function CartProvider({ children }) {
     setCartTotal(cartTotal - itemToRemove.quantity * itemToRemove.price);
     setCartTotalDiscount(
       Number(cartTotalDiscount) -
-        itemToRemove.quantity *
-          (itemToRemove.price - itemToRemove.discountedPrice)
+        (itemToRemove.price - itemToRemove.discountedPrice) *
+          itemToRemove.quantity
     );
   };
   //
