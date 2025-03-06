@@ -132,6 +132,7 @@ function CartItem({
 }
 
 function CartSummary({ cartTotal, clearCart, cartTotalDiscount }) {
+  const navigate = useNavigate();
   return (
     <div className="mt-12 border-t-2 border-blue-3 py-1 flex flex-col gap-2 md:px-4 sticky top-0">
       <h2 className="text-blue-2">Order Summary</h2>
@@ -148,7 +149,9 @@ function CartSummary({ cartTotal, clearCart, cartTotalDiscount }) {
       >
         Empty cart
       </button>
-      <br />
+      <button className="btn-primary" onClick={() => navigate('/Checkout')}>
+        Checkout
+      </button>
     </div>
   );
 }
