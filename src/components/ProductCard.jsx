@@ -58,19 +58,19 @@ export function ProductCard({ product }) {
   );
 }
 
-function ReviewCard({ product }) {
-  return (
-    <div>
-      <h3>Reviews</h3>
-      {product.reviews.map(review => {
-        return (
-          <div key={review.id}>
-            <p>{review.username}</p>
-            <p>{review.rating}</p>
-            <p>{review.description}</p>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
+// function ReviewCard({ product }) {
+//   return (
+//     <div>
+//       <h3>Reviews</h3>
+//       {product.reviews.map(review => {
+//         return (
+//           <div key={review.id}>
+//             <p>{review.username}</p>
+//             <p>{review.rating}</p>
+//             <p>{review.description}</p>
+//           </div>
+//         );
+//       })}
+//     </div>
+//   );
+// }

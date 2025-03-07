@@ -28,7 +28,7 @@ export function HamburgerMenu() {
         </button>
       </div>
       {/* Mobile dropdoen menu */}
-      <div className="">
+      <div className="z-50">
         <div
           className={`fixed left-0 w-full bg-white shadow-lg transition-transform duration-300 ease-in-out ${
             isOpen ? 'translate-x-0' : '-translate-x-full'
