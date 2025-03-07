@@ -11,11 +11,13 @@ export default function StarRating({
   useEffect(() => {
     setRating(defaultRating);
   }, [defaultRating]);
-  const starNum = Number(rating);
+  // const starNum = Number(rating);
+  const fullStars = Math.floor(rating);
+  const halfStars = rating % 1 !== 0;
   return (
     <div className=" flex center gap-2">
       <div className="flex">
-        {Array.from({ length: starNum }).map((_, index) => {
+        {Array.from({ length: rating }).map((_, index) => {
           return <Star key={index} color={color} size={size} />;
         })}
       </div>
@@ -40,4 +42,23 @@ function Star({ rating, color, size }) {
       </svg>
     </span>
   );
+}
+function HalfStar({ color, size }) {
+  const starStyle = {
+    width: `${size}px`,
+    height: `${size}px`,
+    display: 'block',
+    position: 'relative',
+  };
+  return <span></span>;
+}
+
+function EmptyStar({ color, size }) {
+  const starStyle = {
+    width: `${size}px`,
+    height: `${size}px`,
+    display: 'block',
+    position: 'relative',
+  };
+  return <span></span>;
 }
