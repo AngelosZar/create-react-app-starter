@@ -4,8 +4,7 @@ import { CartContext } from '../contexts/CartContext';
 //
 export function ProductCard({ product }) {
   const [selectedProduct, setSelectedProduct] = useState('');
-  const { cart, addToCart, removeFromCart, clearCart } =
-    useContext(CartContext);
+  const { addToCart } = useContext(CartContext);
 
   function handleClick() {
     setSelectedProduct(product.id);
@@ -60,9 +59,6 @@ export function ProductCard({ product }) {
 }
 
 function ReviewCard({ product }) {
-  // 0
-  // :
-  // {id: '47af5354-b3be-42aa-8780-503fcabe2f3e', username: 'Emma K.', rating: 5, description: "Love these earrings, they're so elegant and versatile."}
   return (
     <div>
       <h3>Reviews</h3>

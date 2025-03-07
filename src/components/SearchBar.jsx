@@ -1,5 +1,4 @@
 export function SearchBar({ searchQuery, setSearchQuery }) {
-  // use at product feed to filter products
   return (
     <div className="flex justify-center py-4 flex-col items-center mt-10">
       <h1 className="text-blue-1 mb-4">Welcome to online shop</h1>
@@ -11,9 +10,7 @@ export function SearchBar({ searchQuery, setSearchQuery }) {
           value={searchQuery}
           onChange={e => {
             setSearchQuery(e.target.value);
-            console.log(e.target.value);
           }}
-          // outomatic search after 2 or 3 characters
         />
       </div>
     </div>

@@ -4,28 +4,15 @@ import { CartContext } from '../contexts/CartContext';
 import { useNavigate } from 'react-router-dom';
 
 export default function Cart() {
-  const {
-    cart,
-    addToCart,
-    removeFromCart,
-    clearCart,
-    setCartItems,
-    cartItems,
-    cartTotal,
-    deleteFromCart,
-    cartTotalDiscount,
-  } = useContext(CartContext);
+  const { cart, clearCart, cartTotal, cartTotalDiscount } =
+    useContext(CartContext);
 
-  console.log(cart);
-  console.log(cartTotalDiscount);
   const navigate = useNavigate();
   return (
     <Layout>
       {cart.length > 0 ? (
-        // <section className="flex flex-col md:flex-row gap-4">
         <section className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-4 w-full">
           <CartItems />
-          {/* cartTotal, clearCart, cartTotalDiscount */}
           <CartSummary
             cartTotal={cartTotal}
             clearCart={clearCart}
@@ -53,7 +40,6 @@ function CartItems() {
     cartTotal,
     cartItems,
     deleteFromCart,
-    cartTotalDiscount,
   } = useContext(CartContext);
   return (
     <div>
@@ -81,7 +67,6 @@ function CartItem({
   return cart.map(product => (
     <div
       key={product.id}
-      // className="flex flex-col gap-4 sm:flex-row justify-center items-center mt-12 border-y-2 border-blue-3 py-1 md:px-4 shadow-lg max-w-sm"
       className="flex flex-col gap-4 sm:flex-row justify-between items-center mt-12 border-y-2 border-blue-3 py-1 md:px-4 shadow-lg max-w-lg"
     >
       <div className="flex flex-col gap-2 justify-start max-w-44 max-h-auto flex-shrink-1 w-[30%] ">

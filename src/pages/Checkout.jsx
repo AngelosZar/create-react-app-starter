@@ -12,24 +12,11 @@ export default function Checkout() {
 }
 
 function CheckoutForm() {
-  const {
-    cart,
-    addToCart,
-    removeFromCart,
-    clearCart,
-    setCartItems,
-    cartItems,
-    cartTotal,
-    deleteFromCart,
-    cartTotalDiscount,
-  } = useContext(CartContext);
+  const { clearCart, cartTotal, cartTotalDiscount } = useContext(CartContext);
 
-  // refine form fields
-  // Add form validation
   return (
     <section className="flex flex-col w-full max-w-2xl justify-center items-center mx-auto my-12 p-8 bg-white shadow-md rounded-lg gap-8">
       <div className=" py-1 px-4 text-center w-full max-w-xl">
-        {/* add summary here */}
         <h1 className=" mt-4 mb-6 font-bold text-blue-2 text-5xl">Checkout</h1>
         <CartSummary
           cartTotal={cartTotal}
@@ -81,7 +68,7 @@ function ContinueToPayment() {
   return (
     <div className="flex flex-col gap-4 mb-20">
       <h2 className="pb-6 font-medium">Choose payment method</h2>
-      {/* <fieldset className="flex flex-row gap-4"> */}
+
       <fieldset className="grid grid-cols-3 gap-2">
         <div className="flex flex-col border-2 border-blue-3 rounded-lg p-2 gap-2">
           <span className="flex flex-row gap-2">

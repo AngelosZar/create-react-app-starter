@@ -7,7 +7,6 @@ export function HamburgerMenu() {
     setIsOpen(!isOpen);
   };
   return (
-    // <div className="lg:hidden">
     <>
       <div className="">
         <button
@@ -38,11 +37,11 @@ export function HamburgerMenu() {
         >
           <div className="w-full h-full flex flex-col items-center space-y-4 py-4">
             <ul className=" flex flex-col items-center space-y-4 py-4 text-lg font-medium text-blue-1">
-              <Link to="/product/1" className="hover:text-blue-800">
-                Individual product page
+              <Link to="/" className="hover:text-blue-800">
+                Profile
               </Link>
-              <Link to="/checkout-success" className="hover:text-blue-800">
-                Checkout success page
+              <Link to="/" className="hover:text-blue-800">
+                About us
               </Link>
               <Link to="/contact" className="hover:text-blue-800">
                 Contact page
@@ -58,11 +57,11 @@ export function HamburgerMenu() {
 export function DesktopMenu() {
   return (
     <ul className=" space-x-4 justify-center items-center">
-      <Link to="/product/1" className="hover:text-blue-800">
-        Individual product page
+      <Link to="/" className="hover:text-blue-800">
+        Profile
       </Link>
-      <Link to="/checkout-success" className="hover:text-blue-800">
-        Checkout success page
+      <Link to="/" className="hover:text-blue-800">
+        About us
       </Link>
       <Link to="/contact" className="hover:text-blue-800 transition-colors">
         Contact page

@@ -1,6 +1,6 @@
 import Layout from '../layouts/Layout';
-import { Link, redirect, useParams, useNavigate } from 'react-router-dom';
-import { useState, useEffect, useContext, use } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useState, useEffect, useContext } from 'react';
 import { getSingleProductUrl } from '../constants/apiEndPoints';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { CartContext } from '../contexts/CartContext';
@@ -12,7 +12,6 @@ export default function SingleProductPage() {
 
   useEffect(() => {
     const url = getSingleProductUrl(id);
-    console.log(url);
     async function fetchData() {
       try {
         const response = await fetch(url);
@@ -21,8 +20,6 @@ export default function SingleProductPage() {
         }
         const data = await response.json();
         setProduct(data.data);
-        console.log(data.data);
-        console.log(data.data.tags);
       } catch (error) {
         console.error('Fetch error:', error);
       }
@@ -33,15 +30,13 @@ export default function SingleProductPage() {
   return (
     <Layout>
       <SingleProduct product={product} />
-      {/* how to add recommended products ? */}
     </Layout>
   );
 }
 
 function SingleProduct({ product }) {
   const [isReviewsOpen, setIsReviewsOpen] = useState(false);
-  const { cart, addToCart, removeFromCart, clearCart } =
-    useContext(CartContext);
+  const { addToCart } = useContext(CartContext);
   //  add a loading spinner / or the sceleton thing
 
   const navigate = useNavigate();
@@ -166,8 +161,6 @@ function SingleProduct({ product }) {
 }
 
 function RecommendedProducts() {
-  // map maybe random products or products from the same category
-  // use card component //ProductCard // to display the recommended products
   return (
     <section>
       <h2>Recommended Products</h2>
