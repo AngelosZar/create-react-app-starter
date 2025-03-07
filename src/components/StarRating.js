@@ -12,16 +12,12 @@ export default function StarRating({
     setRating(defaultRating);
   }, [defaultRating]);
   // const starNum = Number(rating);
-  const fullStars = Math.floor(rating);
   const hasHalfStar = rating % 1 !== 0;
   return (
     <div className=" flex center gap-2">
       <div className="flex">
         {Array.from({ length: rating }).map((_, index) => (
           <Star key={index} color={color} size={size} />
-          // {hasHalfStar && <HalfStar color={color} size={size} />}
-          // return <HalfStar key={index} color={color} size={size} />;
-          // return <EmptyStar key={index} color={color} size={size} />;
         ))}
         {hasHalfStar && <HalfStar color={color} size={size} />}
         {Array.from({ length: maxRating - rating }).map((_, index) => (

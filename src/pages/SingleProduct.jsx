@@ -77,16 +77,8 @@ function SingleProduct({ product }) {
           ) : (
             <p className="mt-4">{product.price} nok</p>
           )}
-          <p>{product.rating}</p>
-          {product.rating > 1 ? (
-            <>
-              <StarRating defaultRating={product.rating} size={22} />
-            </>
-          ) : (
-            'No reviews yet'
-          )}
 
-          <div>
+          <div className="mt-3">
             {product.tags.length === 1 ? (
               <h3>Category</h3>
             ) : (
@@ -103,6 +95,22 @@ function SingleProduct({ product }) {
                   : null}
               </ul>
             </div>
+            {product.rating > 1 ? (
+              <div className="flex gap-4 my-2">
+                <span>
+                  <StarRating defaultRating={product.rating} size={22} />
+                </span>
+                <span>
+                  {product.reviews.length > 1 ? (
+                    <p>{product.reviews.length} Reviews</p>
+                  ) : (
+                    <p>(1 review)</p>
+                  )}
+                </span>
+              </div>
+            ) : (
+              'No reviews yet'
+            )}
           </div>
           <div>
             {product.reviews.length > 0 ? (
