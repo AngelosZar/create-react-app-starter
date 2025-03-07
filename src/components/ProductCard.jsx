@@ -6,10 +6,10 @@ import { Link } from 'react-router-dom';
 export function ProductCard({ product }) {
   const [selectedProduct, setSelectedProduct] = useState('');
   const { addToCart } = useContext(CartContext);
-
+  console.log(selectedProduct);
   function handleClick() {
     setSelectedProduct(product.id);
-    <Link to={`/product/${product.id}`}>View Product</Link>;
+    <Link to={`/product/${selectedProduct}`}>View Product</Link>;
   }
 
   return (
