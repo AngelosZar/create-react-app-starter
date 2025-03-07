@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useContext } from 'react';
 import { CartContext } from '../contexts/CartContext';
+import { Link } from 'react-router-dom';
 //
 export function ProductCard({ product }) {
   const [selectedProduct, setSelectedProduct] = useState('');
@@ -8,9 +9,7 @@ export function ProductCard({ product }) {
 
   function handleClick() {
     setSelectedProduct(product.id);
-    window.location.href = `/product/${
-      selectedProduct ? selectedProduct : product.id
-    }`;
+    <Link to={`/product/${product.id}`}>View Product</Link>;
   }
 
   return (
