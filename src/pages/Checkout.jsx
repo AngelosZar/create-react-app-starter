@@ -37,7 +37,7 @@ function CheckoutForm() {
           cartTotalDiscount={cartTotalDiscount}
         />
         <ContinueToPayment />
-        <ShippingDetails />
+        <ShippingDetails clearCart={clearCart} />
       </div>
     </section>
   );
@@ -109,7 +109,7 @@ function ContinueToPayment() {
   );
 }
 
-function ShippingDetails() {
+function ShippingDetails({ clearCart }) {
   let navigate = useNavigate();
   return (
     <div className="border-2 border-blue-3 rounded-lg p-4 my-12">
@@ -130,7 +130,10 @@ function ShippingDetails() {
         <button
           type="submit"
           className="btn-primary"
-          onClick={() => navigate('/checkout-success')}
+          onClick={() => {
+            clearCart();
+            navigate('/checkout-success');
+          }}
         >
           Pay now
         </button>
