@@ -135,7 +135,7 @@ function ShippingDetails({ clearCart }) {
             navigate('/checkout-success');
           }}
         >
-          Pay now
+          Checkout
         </button>
         <button
           type="submit"
