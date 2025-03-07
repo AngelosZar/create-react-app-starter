@@ -1,15 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useContext } from 'react';
 import { CartContext } from '../contexts/CartContext';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 //
 export function ProductCard({ product }) {
   const [selectedProduct, setSelectedProduct] = useState('');
   const { addToCart } = useContext(CartContext);
   console.log(selectedProduct);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (selectedProduct) {
+      navigate(`/product/${selectedProduct}`);
+    }
+  }, [selectedProduct, navigate]);
+  //
   function handleClick() {
     setSelectedProduct(product.id);
-    <Link to={`/product/${selectedProduct}`}>View Product</Link>;
   }
 
   return (
