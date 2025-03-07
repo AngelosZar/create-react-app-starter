@@ -30,7 +30,7 @@ function CheckoutForm() {
     <section className="flex flex-col w-full max-w-2xl justify-center items-center mx-auto my-12 p-8 bg-white shadow-md rounded-lg gap-8">
       <div className=" py-1 px-4 text-center w-full max-w-xl">
         {/* add summary here */}
-        <h1 className=" mt-4 mb-6">Checkout</h1>
+        <h1 className=" mt-4 mb-6 font-bold text-blue-2 text-5xl">Checkout</h1>
         <CartSummary
           cartTotal={cartTotal}
           clearCart={clearCart}
@@ -45,7 +45,7 @@ function CheckoutForm() {
 
 function CartSummary({ cartTotal, clearCart, cartTotalDiscount }) {
   return (
-    <div className="flex flex-col gap-4 border-2 border-blue-3 rounded-lg p-4 mb-12">
+    <div className="flex flex-col gap-4 border-2 border-blue-3 rounded-lg p-4 mb-20">
       <h2 className="self-start">Summary</h2>
       <hr className="w-[25%] h-1 bg-blue-2 self-start" />
       <div className="flex flex-row justify-between items-center mt-4">
@@ -78,26 +78,26 @@ function CartSummary({ cartTotal, clearCart, cartTotalDiscount }) {
 }
 
 function ContinueToPayment() {
-  let navigate = useNavigate();
   return (
-    <div className="flex flex-col gap-4">
-      <h2 className="pb-6">Continue to payment</h2>
-      <fieldset className="flex flex-row gap-4">
-        <div className="flex flex-col border-2 border-blue-3 rounded-lg p-4 gap-4">
+    <div className="flex flex-col gap-4 mb-20">
+      <h2 className="pb-6 font-medium">Choose payment method</h2>
+      {/* <fieldset className="flex flex-row gap-4"> */}
+      <fieldset className="grid grid-cols-3 gap-2">
+        <div className="flex flex-col border-2 border-blue-3 rounded-lg p-2 gap-2">
           <span className="flex flex-row gap-2">
             <input type="radio" id="paypal" name="payment" value="paypal" />
             <label htmlFor="paypal">Paypal</label>
           </span>
           <h6>Continue with paypal</h6>
         </div>
-        <div className="flex flex-col border-2 border-blue-3 rounded-lg p-4 gap-4">
+        <div className="flex flex-col border-2 border-blue-3 rounded-lg p-2 gap-2">
           <span className="flex flex-row gap-2">
             <input type="radio" id="vipps" name="payment" value="vipps" />
             <label htmlFor="vipps">Vipps</label>
           </span>
           <h6>Continue with Vipps</h6>
         </div>
-        <div className="flex flex-col border-2 border-blue-3 p-4 gap-4 rounded-lg ">
+        <div className="flex flex-col border-2 border-blue-3 p-2 gap-2 rounded-lg ">
           <span className="flex flex-row gap-2">
             <input type="radio" id="visa" name="payment" value="visa" />
             <label htmlFor="visa">Visa</label>
@@ -105,30 +105,14 @@ function ContinueToPayment() {
           <h6>Pay with Visa</h6>
         </div>
       </fieldset>
-
-      <div className="flex flex-row gap-4">
-        <button
-          type="submit"
-          className="btn-primary"
-          onClick={() => navigate('/checkout-success')}
-        >
-          Checkout
-        </button>
-        <button
-          type="submit"
-          className="btn-secondary"
-          onClick={() => navigate('/')}
-        >
-          Continue shopping
-        </button>
-      </div>
     </div>
   );
 }
 
 function ShippingDetails() {
+  let navigate = useNavigate();
   return (
-    <>
+    <div className="border-2 border-blue-3 rounded-lg p-4 my-12">
       <h2 className="pb-6">Shipping details</h2>
       <form className="flex flex-col gap-4 max-w-xs mx-auto">
         <div className="flex gap-4">
@@ -142,6 +126,22 @@ function ShippingDetails() {
           <input type="text" placeholder="Zip code" className="form-input " />
         </div>
       </form>
-    </>
+      <div className="flex flex-row gap-4 justify-center mt-4">
+        <button
+          type="submit"
+          className="btn-primary"
+          onClick={() => navigate('/checkout-success')}
+        >
+          Pay now
+        </button>
+        <button
+          type="submit"
+          className="btn-secondary"
+          onClick={() => navigate('/')}
+        >
+          Continue shopping
+        </button>
+      </div>
+    </div>
   );
 }

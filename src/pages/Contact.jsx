@@ -1,11 +1,6 @@
 import Layout from '../layouts/Layout';
 import { useState } from 'react';
-// There will be a contact page which will contain a contact form with the following fields. There must be form validation:
 
-// Full name (Minimum number of characters is 3, required)
-// Subject (Minimum number of characters is 3, required)
-// Email (Must be a valid email address, required)
-// Body (Minimum number of characters is 3, required)
 export default function Contact() {
   return (
     <Layout>
@@ -26,7 +21,7 @@ function ContactForm() {
     e.preventDefault();
     const name = e.target[0].value;
     const message = e.target[2].value;
-    console.log(name, email, message);
+
     if (name.length < 3) {
       setError('Name must be at least 3 characters');
       return;
@@ -42,7 +37,6 @@ function ContactForm() {
     setError('');
     setEmail('');
     e.target.reset();
-    console.log(error);
   };
   return (
     <section className="flex flex-col w-full max-w-lg justify-center items-center mx-auto my-12 p-8 bg-white shadow-md rounded-lg gap-8">
@@ -54,6 +48,13 @@ function ContactForm() {
         <input
           type="text"
           placeholder="Name"
+          className={error ? 'border-red-500 form-input' : 'form-input'}
+          required
+          minLength={3 || error}
+        />
+        <input
+          type="text"
+          placeholder="Subject"
           className={error ? 'border-red-500 form-input' : 'form-input'}
           required
           minLength={3 || error}
