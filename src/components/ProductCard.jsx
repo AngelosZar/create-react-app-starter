@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 export function ProductCard({ product }) {
   const [selectedProduct, setSelectedProduct] = useState('');
   const { addToCart } = useContext(CartContext);
-  console.log(selectedProduct);
   const navigate = useNavigate();
   useEffect(() => {
     if (selectedProduct) {

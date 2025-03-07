@@ -6,7 +6,6 @@ import { ChevronDown, ChevronUp } from 'lucide-react';
 import { CartContext } from '../contexts/CartContext';
 import StarRating from '../components/StarRating.js';
 
-//
 export default function SingleProductPage() {
   const [product, setProduct] = useState(null);
   const { id } = useParams();
@@ -47,6 +46,7 @@ function SingleProduct({ product }) {
   function toggleReviewDropdown() {
     setIsReviewsOpen(!isReviewsOpen);
   }
+  console.log(product);
   return (
     <section className="mt-12 mx-8">
       <div className="grid grid-rows-1 md:grid-cols-2 mt-4 gap-8 bg-white p-8 rounded-lg shadow-md max-w-5xl mx-auto relative ">
@@ -60,6 +60,7 @@ function SingleProduct({ product }) {
 
         <div className="subgrid mb-8">
           <h1 className="">{product.title}</h1>
+
           {/* <h2 className="mt-16 mb-4">Product Details</h2> */}
           <h4 className="mt-8 mb-4">{product.description}</h4>
           {product.discountedPrice < product.price ? (
@@ -76,15 +77,11 @@ function SingleProduct({ product }) {
           ) : (
             <p className="mt-4">{product.price} nok</p>
           )}
-
+          <p>{product.rating}</p>
           {product.rating > 1 ? (
-            <p className="mb-4">
-              Rating : {product.rating} Stars from{' '}
-              {product.reviews.length === 1
-                ? '1 review'
-                : `${product.reviews.length} reviews`}
-              <StarRating defaultRating={product.rating} />
-            </p>
+            <>
+              <StarRating defaultRating={product.rating} size={22} />
+            </>
           ) : (
             'No reviews yet'
           )}
