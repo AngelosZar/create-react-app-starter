@@ -4,6 +4,7 @@ import { useState, useEffect, useContext } from 'react';
 import { getSingleProductUrl } from '../constants/apiEndPoints';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { CartContext } from '../contexts/CartContext';
+import StarRating from '../components/StarRating.js';
 
 //
 export default function SingleProductPage() {
@@ -50,17 +51,17 @@ function SingleProduct({ product }) {
     <section className="mt-12 mx-8">
       <div className="grid grid-rows-1 md:grid-cols-2 mt-4 gap-8 bg-white p-8 rounded-lg shadow-md max-w-5xl mx-auto relative ">
         <div>
-          <h1 className="mb-6">{product.title}</h1>
           <img
             src={product.image.url}
             alt={product.image.alt || 'product'}
-            className="object-cover rounded-lg aspect-square "
+            className="object-cover rounded-lg aspect-square"
           />
         </div>
 
         <div className="subgrid mb-8">
-          <h2 className="mt-16 mb-4">Product Details</h2>
-          <h4 className="mb-4">{product.description}</h4>
+          <h1 className="">{product.title}</h1>
+          {/* <h2 className="mt-16 mb-4">Product Details</h2> */}
+          <h4 className="mt-8 mb-4">{product.description}</h4>
           {product.discountedPrice < product.price ? (
             <div className="grid subgrid gap-2 mb-6">
               <div className="flex gap-2 ">
@@ -82,6 +83,7 @@ function SingleProduct({ product }) {
               {product.reviews.length === 1
                 ? '1 review'
                 : `${product.reviews.length} reviews`}
+              <StarRating defaultRating={product.rating} />
             </p>
           ) : (
             'No reviews yet'
