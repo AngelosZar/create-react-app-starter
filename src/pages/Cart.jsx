@@ -65,17 +65,14 @@ function CartItem({
   deleteFromCart,
 }) {
   const HandleRemoveItem = product => {
-    // alert('Are you sure you want to delete this item?');
     if (window.confirm('Are you sure you want to delete this item?')) {
       deleteFromCart(product);
     }
-    // deleteFromCart(product);
   };
   return cart.map(product => (
     <div
       key={product.id}
-      // className="flex flex-col gap-4 sm:flex-row justify-between items-center mt-12 border-y-2 border-blue-3 py-1 md:px-4 shadow-lg max-w-lg"
-      className="col-span-full flex justify-center items-center shadow-lg border-y-2 border-blue-3 py-1 md:px-4 gap-4 md:gap-4 md:flex-row md:justify-between md:items-center md:mt-12 md:max-w-lg mx-4"
+      className="col-span-full flex justify-center items-center shadow-lg border-y-2 border-blue-3 py-1 md:px-4 gap-4 md:gap-4 md:flex-row md:justify-evenly md:items-center md:mt-12 md:max-w-[750px] mx-4 w-full"
     >
       <div className="flex flex-col gap-2 justify-start max-w-44 max-h-auto flex-shrink-1 m-4">
         <img
@@ -84,9 +81,9 @@ function CartItem({
           className="object-cover max-w-44 max-h-auto flex-shrink-1 aspect-square "
         />
       </div>
-      <div className="flex flex-col gap-2 max-w-sm justify-start items-center text-center sm:text-start sm:items-start sm:justify-start px-4 pt-8 w-[50%]">
+      <div className="flex flex-col gap-2 max-w-sm justify-start items-center text-center sm:text-start sm:items-start sm:justify-start px-4 pt-8 ">
         <h4>{product.title}</h4>
-        {/* <p className="">{product.description}</p> */}
+        <p className="">{product.description}</p>
 
         {product.discountedPrice < product.price ? (
           <div className="grid subgrid gap-2 mb-6">
