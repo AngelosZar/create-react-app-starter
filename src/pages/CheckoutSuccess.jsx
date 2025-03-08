@@ -16,7 +16,7 @@ function CheckoutSuccessMessage() {
       <img
         src={deliveryImg}
         alt="boxes on background"
-        className="w-full max-h-full object-cover relative "
+        className="w-full max-h-full object-cover relative h-full "
       />
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[80%] text-center bg-white p-8 bg-opacity-60 rounded-xl md:mt-20">
         <h1 className="text-2xl  md:text-5xl pb-4">
