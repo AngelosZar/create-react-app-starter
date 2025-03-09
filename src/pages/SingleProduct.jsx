@@ -11,6 +11,16 @@ export default function SingleProductPage() {
   const { id } = useParams();
 
   useEffect(() => {
+    if (!id) {
+      return (
+        <div flex justify-center items-center>
+          <h2>Product not found</h2>
+        </div>
+      );
+    }
+
+    let isMounted = true;
+
     const url = getSingleProductUrl(id);
     async function fetchData() {
       try {
@@ -19,12 +29,18 @@ export default function SingleProductPage() {
           throw new Error(`error ${response.status}`);
         }
         const data = await response.json();
-        setProduct(data.data);
+        if (isMounted) {
+          setProduct(data.data);
+        }
       } catch (error) {
         console.error('Fetch error:', error);
       }
     }
+
     fetchData();
+    return () => {
+      isMounted = false;
+    };
   }, [id]);
 
   return (

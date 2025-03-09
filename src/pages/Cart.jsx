@@ -72,7 +72,7 @@ function CartItem({
   return cart.map(product => (
     <div
       key={product.id}
-      className="col-span-full flex justify-center items-center shadow-lg border-y-2 border-blue-3 py-1 md:px-4 gap-4 md:gap-4 md:flex-row md:justify-evenly md:items-center md:mt-12 md:max-w-[750px] mx-4 w-full"
+      className="col-span-full flex flex-col justify-center items-center shadow-lg border-y-2 border-blue-3 py-1 md:px-4 gap-4 md:gap-4 md:flex-row md:justify-evenly md:items-center md:mt-12 md:max-w-[750px] mx-4 md:w-full "
     >
       <div className="flex flex-col gap-2 justify-start max-w-44 max-h-auto flex-shrink-1 m-4">
         <img
@@ -81,7 +81,8 @@ function CartItem({
           className="object-cover max-w-44 max-h-auto flex-shrink-1 aspect-square "
         />
       </div>
-      <div className="flex flex-col gap-2 max-w-sm justify-start items-center text-center sm:text-start sm:items-start sm:justify-start px-4 pt-8 ">
+      {/* <div className="flex flex-col gap-2 max-w-sm justify-start items-center text-center sm:text-start sm:items-start sm:justify-start px-4 pt-8 "> */}
+      <div className="flex flex-col gap-2  px-4 pt-8">
         <h4>{product.title}</h4>
         <p className="">{product.description}</p>
 
