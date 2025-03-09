@@ -12,10 +12,25 @@ import Checkout from './pages/Checkout';
 // import '../src/styles/tailwind.css';
 import './styles/tailwind.css';
 
+import { ScrollRestoration, useLocation } from 'react-router-dom';
+import { use, useEffect } from 'react';
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 function App() {
   return (
     <CartProvider>
       <BrowserRouter>
+        {/* <ScrollRestoration /> */}
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />

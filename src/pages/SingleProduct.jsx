@@ -44,6 +44,7 @@ export default function SingleProductPage() {
         }
       } catch (error) {
         console.error('Fetch error:', error);
+
         if (isMounted) {
           setError(error.message);
           setIsLoading(false);
