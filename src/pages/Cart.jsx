@@ -11,7 +11,7 @@ export default function Cart() {
   return (
     <Layout>
       {cart.length > 0 ? (
-        <section className="grid grid-cols-1 md:grid-cols-[2fr_1fr] md:gap-4 w-full">
+        <section className="grid grid-cols-1 md:grid-cols-[2fr_1fr] md:gap-4 w-full bg-slate-50">
           <CartItems />
           <CartSummary
             cartTotal={cartTotal}
@@ -42,7 +42,7 @@ function CartItems() {
     deleteFromCart,
   } = useContext(CartContext);
   return (
-    <div>
+    <div className="mt-12 md:px-4 mx-4">
       {' '}
       <CartItem
         cart={cart}
@@ -72,19 +72,20 @@ function CartItem({
   return cart.map(product => (
     <div
       key={product.id}
-      className="col-span-full flex flex-col justify-center items-center shadow-lg border-y-2 border-blue-3 py-1 md:px-4 gap-4 md:gap-4 md:flex-row md:justify-evenly md:items-center md:mt-12 md:max-w-[750px] mx-4 md:w-full "
+      // className="col-span-full flex flex-col justify-center items-center shadow-lg border-y-2 border-blue-3 py-1 md:px-4 gap-4 md:gap-4 md:flex-row md:justify-evenly md:items-center md:mt-12 md:max-w-[750px] mx-4 md:w-full "
+      className="col-span-full flex flex-col justify-center items-center shadow-lg border-y-2 border-blue-3 py-1 bg-white mb-8 sm:flex-row sm:justify-normal"
     >
       <div className="flex flex-col gap-2 justify-start max-w-44 max-h-auto flex-shrink-1 m-4">
         <img
           src={product.image.url}
           alt={product.title}
-          className="object-cover max-w-44 max-h-auto flex-shrink-1 aspect-square "
+          className="object-cover max-w-44 max-h-auto flex-shrink-1 aspect-square self-start"
         />
       </div>
       {/* <div className="flex flex-col gap-2 max-w-sm justify-start items-center text-center sm:text-start sm:items-start sm:justify-start px-4 pt-8 "> */}
       <div className="flex flex-col gap-2  px-4 pt-8">
         <h4>{product.title}</h4>
-        <p className="">{product.description}</p>
+        <p>{product.description}</p>
 
         {product.discountedPrice < product.price ? (
           <div className="grid subgrid gap-2 mb-6">
@@ -110,7 +111,7 @@ function CartItem({
         </span>
         <span className="self-end">
           <button
-            className="hover:text-red-500"
+            className="hover:text-red-500 pb-2"
             onClick={() => {
               HandleRemoveItem(product);
             }}
@@ -132,7 +133,7 @@ function CartSummary({ cartTotal, clearCart, cartTotalDiscount }) {
     }
   };
   return (
-    <div className="mt-12 border-t-2 border-blue-3 py-1 flex flex-col gap-2 md:px-4 mx-4 ">
+    <div className="mt-12 border-t-2 border-blue-3  flex flex-col gap-2 md:px-4 mx-4 bg-white py-4 h-fit shadow-xl">
       <h2 className="text-blue-2 mb-2">Order Summary</h2>
       <p>Subtotal: {Number(cartTotal).toFixed(2)} nok</p>
       <p>Discount: {Math.round(cartTotalDiscount)} nok</p>
