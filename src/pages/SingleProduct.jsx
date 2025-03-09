@@ -9,17 +9,25 @@ import StarRating from '../components/StarRating.js';
 export default function SingleProductPage() {
   const [product, setProduct] = useState(null);
   const { id } = useParams();
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (!id) {
-      return (
-        <div flex justify-center items-center>
-          <h2>Product not found</h2>
-        </div>
-      );
+      setError('Opps!Could not find the product');
+      setIsLoading(false);
+      return;
     }
 
+    setIsLoading(true);
     let isMounted = true;
+
+    const timeOut = setTimeout(() => {
+      if (isMounted) {
+        setError('Ops!It took too long to fetch the product');
+        setIsLoading(false);
+      }
+    }, 7000);
 
     const url = getSingleProductUrl(id);
     async function fetchData() {
@@ -31,21 +39,34 @@ export default function SingleProductPage() {
         const data = await response.json();
         if (isMounted) {
           setProduct(data.data);
+          setIsLoading(false);
+          clearTimeout(timeOut);
         }
       } catch (error) {
         console.error('Fetch error:', error);
+        if (isMounted) {
+          setError(error.message);
+          setIsLoading(false);
+          clearTimeout(timeOut);
+        }
       }
     }
 
     fetchData();
     return () => {
       isMounted = false;
+      clearTimeout(timeOut);
     };
   }, [id]);
 
   return (
     <Layout>
-      <SingleProduct product={product} />
+      {/* {error && <p>{error}</p>} */}
+      {/* {error ? <p>{error}</p> : isLoading && <p>Loading...</p>} */}
+      {/* <SingleProduct product={product} /> */}
+      {error && <p>{error}</p>}
+      {isLoading && <p>Loading...</p>}
+      {!isLoading && !error && <SingleProduct product={product} />}
     </Layout>
   );
 }
