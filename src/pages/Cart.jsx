@@ -74,7 +74,7 @@ function CartItem({ cart, addToCart, removeFromCart, deleteFromCart }) {
         />
       </div>
 
-      <div className="flex flex-col gap-2  px-4 pt-8">
+      <div className="flex flex-col gap-2  px-4 pt-8 w-full">
         <h4>{product.title}</h4>
         <p>{product.description}</p>
 
