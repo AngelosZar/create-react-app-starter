@@ -62,9 +62,6 @@ export default function SingleProductPage() {
 
   return (
     <Layout>
-      {/* {error && <p>{error}</p>} */}
-      {/* {error ? <p>{error}</p> : isLoading && <p>Loading...</p>} */}
-      {/* <SingleProduct product={product} /> */}
       {error && <p>{error}</p>}
       {isLoading && <p>Loading...</p>}
       {!isLoading && !error && <SingleProduct product={product} />}
@@ -84,7 +81,6 @@ function SingleProduct({ product }) {
   function toggleReviewDropdown() {
     setIsReviewsOpen(!isReviewsOpen);
   }
-  console.log(product);
   return (
     <section className="mt-12 mx-8">
       <div className="grid grid-rows-1 md:grid-cols-2 mt-4 gap-8 bg-white p-8 rounded-lg shadow-md max-w-5xl mx-auto relative ">
@@ -99,7 +95,6 @@ function SingleProduct({ product }) {
         <div className="subgrid mb-8">
           <h1 className="">{product.title}</h1>
 
-          {/* <h2 className="mt-16 mb-4">Product Details</h2> */}
           <h4 className="mt-8 mb-4">{product.description}</h4>
           {product.discountedPrice < product.price ? (
             <div className="grid subgrid gap-2 mb-6">

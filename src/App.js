@@ -1,6 +1,8 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-//
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import { CartProvider } from './contexts/CartContext';
+//
+import './styles/tailwind.css';
 //
 import Home from './pages/Home';
 import Contact from './pages/Contact';
@@ -8,12 +10,6 @@ import Cart from './pages/Cart';
 import CheckoutSuccessPage from './pages/CheckoutSuccess';
 import SingleProductPage from './pages/SingleProduct';
 import Checkout from './pages/Checkout';
-// import './App.css';
-// import '../src/styles/tailwind.css';
-import './styles/tailwind.css';
-
-import { ScrollRestoration, useLocation } from 'react-router-dom';
-import { use, useEffect } from 'react';
 
 function ScrollToTop() {
   const { pathname } = useLocation();

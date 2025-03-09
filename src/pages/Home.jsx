@@ -1,9 +1,9 @@
+import { useState, useEffect } from 'react';
 import Layout from '../layouts/Layout';
 
 import { ProductsFeed } from '../components/ProductsFeed';
 import { HeroOnHome } from '../components/HeroOnHome';
 import { QuoteSection } from '../components/QuoteSection';
-import { useState, useEffect } from 'react';
 import { ALLPRODUCTSURL } from '../constants/apiEndPoints';
 
 export default function Home() {

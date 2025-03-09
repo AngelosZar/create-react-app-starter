@@ -31,6 +31,14 @@ function CheckoutForm() {
 }
 
 function CartSummary({ cartTotal, clearCart, cartTotalDiscount }) {
+  const navigate = useNavigate();
+
+  const HandleClearCart = function () {
+    if (window.confirm('Are you sure you want to clear cart?')) {
+      clearCart();
+      navigate('/Cart');
+    }
+  };
   return (
     <div className="flex flex-col gap-4 border-2 border-blue-3 rounded-lg p-4 mb-20">
       <h2 className="self-start">Summary</h2>
@@ -57,7 +65,7 @@ function CartSummary({ cartTotal, clearCart, cartTotalDiscount }) {
         <h3>Total</h3>
         <h3>{cartTotal.toFixed(2)}</h3>
       </div>
-      <button className="btn-primary" onClick={clearCart}>
+      <button className="btn-primary" onClick={HandleClearCart}>
         Clear cart
       </button>
     </div>
@@ -98,6 +106,7 @@ function ContinueToPayment() {
 
 function ShippingDetails({ clearCart }) {
   let navigate = useNavigate();
+
   return (
     <div className="border-2 border-blue-3 rounded-lg p-4 my-12">
       <h2 className="pb-6">Shipping details</h2>

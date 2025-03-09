@@ -43,7 +43,6 @@ function CartItems() {
   } = useContext(CartContext);
   return (
     <div className="mt-12 md:px-4 mx-4">
-      {' '}
       <CartItem
         cart={cart}
         addToCart={addToCart}
@@ -56,14 +55,7 @@ function CartItems() {
   );
 }
 
-function CartItem({
-  cart,
-  addToCart,
-  removeFromCart,
-  cartTotal,
-  cartItems,
-  deleteFromCart,
-}) {
+function CartItem({ cart, addToCart, removeFromCart, deleteFromCart }) {
   const HandleRemoveItem = product => {
     if (window.confirm('Are you sure you want to delete this item?')) {
       deleteFromCart(product);
@@ -72,8 +64,7 @@ function CartItem({
   return cart.map(product => (
     <div
       key={product.id}
-      // className="col-span-full flex flex-col justify-center items-center shadow-lg border-y-2 border-blue-3 py-1 md:px-4 gap-4 md:gap-4 md:flex-row md:justify-evenly md:items-center md:mt-12 md:max-w-[750px] mx-4 md:w-full "
-      className="col-span-full flex flex-col justify-center items-center shadow-lg border-y-2 border-blue-3 py-1 bg-white mb-8 sm:flex-row sm:justify-normal"
+      className="col-span-full flex flex-col justify-center items-center shadow-lg border-y-2 border-blue-3 py-1 bg-white mb-8 sm:flex-row sm:justify-normal md:max-w-[750px]"
     >
       <div className="flex flex-col gap-2 justify-start max-w-44 max-h-auto flex-shrink-1 m-4">
         <img
@@ -82,7 +73,7 @@ function CartItem({
           className="object-cover max-w-44 max-h-auto flex-shrink-1 aspect-square self-start"
         />
       </div>
-      {/* <div className="flex flex-col gap-2 max-w-sm justify-start items-center text-center sm:text-start sm:items-start sm:justify-start px-4 pt-8 "> */}
+
       <div className="flex flex-col gap-2  px-4 pt-8">
         <h4>{product.title}</h4>
         <p>{product.description}</p>
